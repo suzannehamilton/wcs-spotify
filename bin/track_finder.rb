@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require "rspotify"
+require "yaml"
 
 search_terms = [
   "wcs",
@@ -29,6 +30,11 @@ def search_playlists(search_term)
 
   results
 end
+
+# TODO: Reference file relative to this one?
+config = YAML::load_file("config.yaml")
+
+RSpotify.authenticate(config["spotify_api"]["client_id"], config["spotify_api"]["client_secret"])
 
 wcs_playlists = search_terms.map { |term|
   search_playlists(term)

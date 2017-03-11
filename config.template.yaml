@@ -1,0 +1,8 @@
+# To use this file, create a copy named `config.yaml` and replace the
+# placeholders with real values
+
+# Generate client credientials by creating a Spotify app:
+# https://developer.spotify.com/my-applications
+spotify_api:
+  client_id: your_client_id
+  client_secret: your_client_secret
