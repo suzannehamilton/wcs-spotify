@@ -33,15 +33,27 @@ def search_playlists(search_term)
   results
 end
 
+PlaylistTrack = Struct.new(:track, :owner, :added_at)
+
 def fetch_tracks(playlists)
   playlists.map { |playlist|
     total_tracks = playlist.total
     track_sets = (total_tracks / 100.to_f).ceil
 
+    owner = playlist.owner
+
     playlist_tracks = []
     track_sets.times do |track_offset|
       track_set = playlist.tracks(offset: track_offset * 100)
-      playlist_tracks << track_set
+      tracks_added_at = playlist.tracks_added_at
+
+      playlist_tracks << track_set.map { |track|
+        PlaylistTrack.new(
+          track,
+          owner,
+          tracks_added_at[track.id]
+        )
+      }
     end
 
     playlist_tracks
