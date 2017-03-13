@@ -3,12 +3,14 @@
 require "rspotify"
 require "yaml"
 
+# TODO: Reinstate all the search terms
 search_terms = [
-  "wcs",
-  "westcoastswing",
-  "west coastswing",
-  "westcoast swing",
-  "west coast swing",
+  # "wcs",
+  # "westcoastswing",
+  # "west coastswing",
+  # "westcoast swing",
+  # "west coast swing",
+  "west coast swing 2017",
 ]
 
 def search_playlists(search_term)
@@ -31,6 +33,21 @@ def search_playlists(search_term)
   results
 end
 
+def fetch_tracks(playlists)
+  playlists.map { |playlist|
+    total_tracks = playlist.total
+    track_sets = (total_tracks / 100.to_f).ceil
+
+    playlist_tracks = []
+    track_sets.times do |track_offset|
+      track_set = playlist.tracks(offset: track_offset * 100)
+      playlist_tracks << track_set
+    end
+
+    playlist_tracks
+  }.flatten
+end
+
 # TODO: Reference file relative to this one?
 config = YAML::load_file("config.yaml")
 
@@ -40,8 +57,8 @@ wcs_playlists = search_terms.map { |term|
   search_playlists(term)
 }.flatten
 
-puts wcs_playlists.length
+puts "Found #{wcs_playlists.length} playlists "
 
-wcs_playlists.each do |playlist|
-  puts "'#{playlist.name}' by '#{playlist.owner.id}'. #{playlist.total} tracks"
-end
+all_tracks = fetch_tracks(wcs_playlists)
+
+puts "Found #{all_tracks.length} tracks"
