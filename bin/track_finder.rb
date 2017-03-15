@@ -60,6 +60,27 @@ def fetch_tracks(playlists)
   }.flatten
 end
 
+class UserTrack
+  attr_reader :track, :added_by_user
+
+  def initialize(track)
+    @track = track
+    @added_by_user = Hash.new { |h, k| h[k] = [] }
+  end
+end
+
+def combine_tracks_by_user(playlist_tracks)
+  playlist_tracks.each_with_object({}) do |playlist_track, tracks|
+    track_id = playlist_track.track.id
+
+    track = tracks[track_id] || UserTrack.new(playlist_track.track)
+    tracks[track_id] = track
+
+    user_id = playlist_track.owner.id
+    track.added_by_user[user_id] << playlist_track.added_at
+  end
+end
+
 # TODO: Reference file relative to this one?
 config = YAML::load_file("config.yaml")
 
@@ -73,4 +94,10 @@ puts "Found #{wcs_playlists.length} playlists "
 
 all_tracks = fetch_tracks(wcs_playlists)
 
-puts "Found #{all_tracks.length} tracks"
+puts "Found #{all_tracks.length} playlist tracks"
+
+user_tracks = combine_tracks_by_user(all_tracks)
+
+puts "Found #{user_tracks.length} unique tracks"
+
+require 'pry'; binding.pry
