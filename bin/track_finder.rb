@@ -81,6 +81,27 @@ def combine_tracks_by_user(playlist_tracks)
   end
 end
 
+def tracks_added_in(user_tracks, from, to)
+  # TODO: Filter
+  user_tracks
+end
+
+ChartTrack = Struct.new(:track, :adds)
+
+def top_tracks(user_tracks, from, to)
+  tracks_added_in(user_tracks, from, to)
+    .map { |id, user_track| ChartTrack.new(user_track.track, user_track.added_by_user.length) }
+  # TODO: Sort
+end
+
+def print_tracks(chart, number)
+  chart.take(number).each_with_index do |chart_track, index|
+    track = chart_track.track
+    artist_name = artists.map { |a| a.name }.join(", ")
+    puts "\##{index + 1} (#{chart_track.adds} adds) #{artist_name} - #{track.name}"
+  end
+end
+
 # TODO: Reference file relative to this one?
 config = YAML::load_file("config.yaml")
 
@@ -99,5 +120,12 @@ puts "Found #{all_tracks.length} playlist tracks"
 user_tracks = combine_tracks_by_user(all_tracks)
 
 puts "Found #{user_tracks.length} unique tracks"
+
+january_tracks = top_tracks(user_tracks, Time.new(2017, 1, 1, 0, 0, 0, 0), Time.new(2017, 2, 1, 0, 0, 0, 0))
+february_tracks = top_tracks(user_tracks, Time.new(2017, 2, 1, 0, 0, 0, 0), Time.new(2017, 3, 1, 0, 0, 0, 0))
+march_tracks = top_tracks(user_tracks, Time.new(2017, 3, 1, 0, 0, 0, 0), Time.new(2017, 4, 1, 0, 0, 0, 0))
+
+tracks_2016 = top_tracks(user_tracks, Time.new(2016, 1, 1, 0, 0, 0, 0), Time.new(2017, 1, 1, 0, 0, 0, 0))
+tracks_2017 = top_tracks(user_tracks, Time.new(2017, 1, 1, 0, 0, 0, 0), Time.new(2018, 1, 1, 0, 0, 0, 0))
 
 require 'pry'; binding.pry
