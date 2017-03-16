@@ -81,23 +81,33 @@ def combine_tracks_by_user(playlist_tracks)
   end
 end
 
-def tracks_added_in(user_tracks, from, to)
-  # TODO: Filter
-  user_tracks
-end
-
 ChartTrack = Struct.new(:track, :adds)
+
+def tracks_added_in(user_tracks, from, to)
+  tracks_in_range = []
+
+  user_tracks.each { |id, user_track|
+    adds = user_track.added_by_user.values.select { |dates_added|
+      dates_added.any? {|d| d >= from && d < to }
+    }.length
+
+    if adds > 0
+      tracks_in_range << ChartTrack.new(user_track.track, adds)
+    end
+  }
+
+  tracks_in_range
+end
 
 def top_tracks(user_tracks, from, to)
   tracks_added_in(user_tracks, from, to)
-    .map { |id, user_track| ChartTrack.new(user_track.track, user_track.added_by_user.length) }
   # TODO: Sort
 end
 
 def print_tracks(chart, number)
   chart.take(number).each_with_index do |chart_track, index|
     track = chart_track.track
-    artist_name = artists.map { |a| a.name }.join(", ")
+    artist_name = track.artists.map { |a| a.name }.join(", ")
     puts "\##{index + 1} (#{chart_track.adds} adds) #{artist_name} - #{track.name}"
   end
 end
