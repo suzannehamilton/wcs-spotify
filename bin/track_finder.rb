@@ -89,7 +89,7 @@ def tracks_added_in(user_tracks, from, to)
 
   user_tracks.each { |id, user_track|
     adds = user_track.added_by_user.values.select { |dates_added|
-      dates_added.any? {|d| d >= from && d < to }
+      dates_added.any? {|d| !d.nil? && d >= from && d < to }
     }.length
 
     if adds > 0
