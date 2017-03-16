@@ -2,6 +2,7 @@
 
 require "rspotify"
 require "yaml"
+require "csv"
 
 # TODO: Reinstate all the search terms
 search_terms = [
@@ -112,6 +113,18 @@ def print_tracks(chart, number)
   end
 end
 
+def save_tracks(chart, name)
+  file_name = "results/#{name}_#{Time.new.strftime('%F_%T')}.csv"
+  CSV.open(file_name, "wb") do |csv|
+    csv << ["adds", "track_id", "artists", "name"]
+    chart.each do |chart_track|
+      track = chart_track.track
+      artist_name = track.artists.map { |a| a.name }.join(", ")
+      csv << [chart_track.adds, track.id, artist_name, track.name]
+    end
+  end
+end
+
 # TODO: Reference file relative to this one?
 config = YAML::load_file("config.yaml")
 
@@ -137,5 +150,11 @@ march_tracks = top_tracks(user_tracks, Time.new(2017, 3, 1, 0, 0, 0, 0), Time.ne
 
 tracks_2016 = top_tracks(user_tracks, Time.new(2016, 1, 1, 0, 0, 0, 0), Time.new(2017, 1, 1, 0, 0, 0, 0))
 tracks_2017 = top_tracks(user_tracks, Time.new(2017, 1, 1, 0, 0, 0, 0), Time.new(2018, 1, 1, 0, 0, 0, 0))
+
+save_tracks(january_tracks, "january_2017")
+save_tracks(february_tracks, "february_2017")
+save_tracks(march_tracks, "march_2017")
+save_tracks(tracks_2016, "all_2016")
+save_tracks(tracks_2017, "all_2017")
 
 require 'pry'; binding.pry
