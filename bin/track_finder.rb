@@ -101,7 +101,7 @@ end
 
 def top_tracks(user_tracks, from, to)
   tracks_added_in(user_tracks, from, to)
-  # TODO: Sort
+    .sort_by { |chart_track| [-chart_track.adds, chart_track.track.id] }
 end
 
 def print_tracks(chart, number)
