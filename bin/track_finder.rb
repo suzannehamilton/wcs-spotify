@@ -74,11 +74,17 @@ def combine_tracks_by_user(playlist_tracks)
   playlist_tracks.each_with_object({}) do |playlist_track, tracks|
     track_id = playlist_track.track.id
 
-    track = tracks[track_id] || UserTrack.new(playlist_track.track)
-    tracks[track_id] = track
+    if track_id
+      track = tracks[track_id] || UserTrack.new(playlist_track.track)
+      tracks[track_id] = track
 
-    user_id = playlist_track.owner.id
-    track.added_by_user[user_id] << playlist_track.added_at
+      user_id = playlist_track.owner.id
+      track.added_by_user[user_id] << playlist_track.added_at
+    else
+      # Tracks with no IDs seem to be a user's local files
+      puts "Warning: track with nil id: #{playlist_track.track.name} by " +
+        "#{playlist_track.track.artists.first.name} in playlist by #{playlist_track.owner.id}"
+    end
   end
 end
 
@@ -93,9 +99,7 @@ def tracks_added_in(user_tracks, from, to)
       earliest >= from && earliest < to
     }.length
 
-    if user_track.track.id == nil
-      puts "Warning: track with nil id: #{user_track.track.name}"
-    elsif adds > 0
+    if adds > 0
       tracks_in_range << ChartTrack.new(user_track.track, adds)
     end
   }
