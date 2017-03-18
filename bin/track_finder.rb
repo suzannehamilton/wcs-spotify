@@ -89,10 +89,13 @@ def tracks_added_in(user_tracks, from, to)
 
   user_tracks.each { |id, user_track|
     adds = user_track.added_by_user.values.select { |dates_added|
-      dates_added.any? {|d| !d.nil? && d >= from && d < to }
+      earliest = dates_added.compact.min
+      earliest >= from && earliest < to
     }.length
 
-    if adds > 0
+    if user_track.track.id == nil
+      puts "Warning: track with nil id: #{user_track.track.name}"
+    elsif adds > 0
       tracks_in_range << ChartTrack.new(user_track.track, adds)
     end
   }
