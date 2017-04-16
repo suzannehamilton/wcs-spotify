@@ -96,7 +96,13 @@ def tracks_added_in(user_tracks, from, to)
   user_tracks.each { |id, user_track|
     adds = user_track.added_by_user.values.select { |dates_added|
       earliest = dates_added.compact.min
-      earliest >= from.to_time && earliest < to.to_time
+      if earliest.nil?
+        puts "Warning: track only has nil date-added: #{user_track.track.name} " +
+          "by #{user_track.track.artists.first.name}"
+        false
+      else
+        earliest >= from.to_time && earliest < to.to_time
+      end
     }.length
 
     if adds > 0
