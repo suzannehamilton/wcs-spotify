@@ -96,7 +96,7 @@ def tracks_added_in(user_tracks, from, to)
   user_tracks.each { |id, user_track|
     adds = user_track.added_by_user.values.select { |dates_added|
       earliest = dates_added.compact.min
-      earliest >= from && earliest < to
+      earliest >= from.to_time && earliest < to.to_time
     }.length
 
     if adds > 0
@@ -151,17 +151,12 @@ user_tracks = combine_tracks_by_user(all_tracks)
 
 puts "Found #{user_tracks.length} unique tracks"
 
-january_tracks = top_tracks(user_tracks, Time.new(2017, 1, 1, 0, 0, 0, 0), Time.new(2017, 2, 1, 0, 0, 0, 0))
-february_tracks = top_tracks(user_tracks, Time.new(2017, 2, 1, 0, 0, 0, 0), Time.new(2017, 3, 1, 0, 0, 0, 0))
-march_tracks = top_tracks(user_tracks, Time.new(2017, 3, 1, 0, 0, 0, 0), Time.new(2017, 4, 1, 0, 0, 0, 0))
+now = DateTime.now
+previous_month_end = DateTime.new(now.year, now.month, 1, 0, 0, 0, 0)
+previous_month_beginning = previous_month_end << 1
 
-tracks_2016 = top_tracks(user_tracks, Time.new(2016, 1, 1, 0, 0, 0, 0), Time.new(2017, 1, 1, 0, 0, 0, 0))
-tracks_2017 = top_tracks(user_tracks, Time.new(2017, 1, 1, 0, 0, 0, 0), Time.new(2018, 1, 1, 0, 0, 0, 0))
+previous_month_tracks = top_tracks(user_tracks, previous_month_beginning, previous_month_end)
 
-save_tracks(january_tracks, "january_2017")
-save_tracks(february_tracks, "february_2017")
-save_tracks(march_tracks, "march_2017")
-save_tracks(tracks_2016, "all_2016")
-save_tracks(tracks_2017, "all_2017")
+save_tracks(previous_month_tracks, previous_month_beginning.strftime("%Y_%B"))
 
 require 'pry'; binding.pry
