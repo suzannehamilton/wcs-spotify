@@ -157,12 +157,18 @@ user_tracks = combine_tracks_by_user(all_tracks)
 
 puts "Found #{user_tracks.length} unique tracks"
 
+earliest_add_date = user_tracks.values.map { |t| t.added_by_user.values }.flatten.compact.min
+
 now = DateTime.now
-previous_month_end = DateTime.new(now.year, now.month, 1, 0, 0, 0, 0)
-previous_month_beginning = previous_month_end << 1
+month_end = DateTime.new(now.year, now.month, 1, 0, 0, 0, 0)
+month_beginning = month_end << 1
 
-previous_month_tracks = top_tracks(user_tracks, previous_month_beginning, previous_month_end)
+while month_beginning.to_time > earliest_add_date do
+  puts "Finding tracks for #{month_beginning.strftime("%Y_%B")}"
 
-save_tracks(previous_month_tracks, previous_month_beginning.strftime("%Y_%B"))
+  monthly_tracks = top_tracks(user_tracks, month_beginning, month_end)
+  save_tracks(monthly_tracks, month_beginning.strftime("%Y_%B"))
 
-require 'pry'; binding.pry
+  month_end = month_beginning
+  month_beginning = month_end << 1
+end
