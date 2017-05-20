@@ -125,8 +125,8 @@ def print_tracks(chart, number)
   end
 end
 
-def save_tracks(chart, name)
-  file_name = "results/#{name}_#{Time.new.strftime('%F_%T')}.csv"
+def save_tracks(chart, name, current_time)
+  file_name = "results/#{name}_#{current_time.strftime('%F_%T')}.csv"
   CSV.open(file_name, "wb") do |csv|
     csv << ["adds", "track_id", "artists", "name"]
     chart.each do |chart_track|
@@ -141,6 +141,8 @@ end
 config = YAML::load_file("config.yaml")
 
 RSpotify.authenticate(config["spotify_api"]["client_id"], config["spotify_api"]["client_secret"])
+
+now = DateTime.now
 
 wcs_playlists = search_terms.map { |term|
   search_playlists(term)
@@ -158,7 +160,6 @@ puts "Found #{user_tracks.length} unique tracks"
 
 earliest_add_date = user_tracks.values.map { |t| t.added_by_user.values }.flatten.compact.min
 
-now = DateTime.now
 month_end = DateTime.new(now.year, now.month, 1, 0, 0, 0, 0)
 month_beginning = month_end << 1
 
@@ -166,7 +167,7 @@ while month_beginning.to_time > earliest_add_date do
   puts "Finding tracks for #{month_beginning.strftime("%Y_%B")}"
 
   monthly_tracks = top_tracks(user_tracks, month_beginning, month_end)
-  save_tracks(monthly_tracks, "all_months_" + month_beginning.strftime("%Y_%B"))
+  save_tracks(monthly_tracks, "all_months_" + month_beginning.strftime("%Y_%B"), now)
 
   month_end = month_beginning
   month_beginning = month_end << 1
@@ -180,7 +181,7 @@ while year >= earliest_add_date.year do
   year_beginning = DateTime.new(year, 1, 1, 0, 0, 0, 0)
 
   yearly_tracks = top_tracks(user_tracks, year_beginning, year_end)
-  save_tracks(yearly_tracks, "all_years_#{year}")
+  save_tracks(yearly_tracks, "all_years_#{year}", now)
 
   year = year - 1
 end
