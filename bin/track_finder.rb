@@ -81,9 +81,7 @@ def combine_tracks_by_user(playlist_tracks)
       user_id = playlist_track.owner.id
       track.added_by_user[user_id] << playlist_track.added_at
     else
-      # Tracks with no IDs seem to be a user's local files
-      puts "Warning: track with nil id: #{playlist_track.track.name} by " +
-        "#{playlist_track.track.artists.first.name} in playlist by #{playlist_track.owner.id}"
+      # Tracks with no IDs are from the user's local filesystem
     end
   end
 end
@@ -97,8 +95,9 @@ def tracks_added_in(user_tracks, from, to)
     adds = user_track.added_by_user.values.select { |dates_added|
       earliest = dates_added.compact.min
       if earliest.nil?
-        puts "Warning: track only has nil date-added: #{user_track.track.name} " +
-          "by #{user_track.track.artists.first.name}"
+        # Tracks with a nil `date-added` value were added to a playlist
+        # before Spotify started storing date-added. So this is a valid
+        # value but we can't use this track to generate charts.
         false
       else
         earliest >= from.to_time && earliest < to.to_time
