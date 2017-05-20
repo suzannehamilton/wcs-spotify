@@ -167,8 +167,21 @@ while month_beginning.to_time > earliest_add_date do
   puts "Finding tracks for #{month_beginning.strftime("%Y_%B")}"
 
   monthly_tracks = top_tracks(user_tracks, month_beginning, month_end)
-  save_tracks(monthly_tracks, month_beginning.strftime("%Y_%B"))
+  save_tracks(monthly_tracks, "all_months_" + month_beginning.strftime("%Y_%B"))
 
   month_end = month_beginning
   month_beginning = month_end << 1
+end
+
+year = now.year
+
+while year >= earliest_add_date.year do
+  puts "Finding tracks for #{year}"
+  year_end = DateTime.new(year + 1, 1, 1, 0, 0, 0, 0)
+  year_beginning = DateTime.new(year, 1, 1, 0, 0, 0, 0)
+
+  yearly_tracks = top_tracks(user_tracks, year_beginning, year_end)
+  save_tracks(yearly_tracks, "all_years_#{year}")
+
+  year = year - 1
 end
