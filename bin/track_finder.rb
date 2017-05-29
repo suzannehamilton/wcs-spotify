@@ -87,12 +87,8 @@ def combine_tracks_by_user(playlist_tracks)
 end
 
 def choose_canonical_track(tracks)
-  # Spotify release dates may be a year, year-month or year-month-day
-  # but it's safe to just sort by the string value rather than trying
-  # to parse this, because all we care about is choosing a consistent
-  # track between runs of the script.
   tracks.reject { |t| t.id.nil? }
-    .sort_by { |t| t.album.release_date }.first
+    .sort_by { |t| t.id }.first
 end
 
 ChartTrack = Struct.new(:track, :adds)
