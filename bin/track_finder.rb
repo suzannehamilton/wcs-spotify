@@ -5,14 +5,13 @@ require "rspotify"
 require "yaml"
 require "csv"
 
-# TODO: Reinstate all the search terms
 search_terms = [
-  # "wcs",
-  # "westcoastswing",
-  # "west coastswing",
-  # "westcoast swing",
-  # "west coast swing",
-  "west coast swing 2017",
+  "wcs",
+  "westcoastswing",
+  "west coastswing",
+  "westcoast swing",
+  "west coast swing",
+  "westie",
 ]
 
 def search_playlists(search_term)
