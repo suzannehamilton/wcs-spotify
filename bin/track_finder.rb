@@ -62,28 +62,37 @@ def fetch_tracks(playlists)
 end
 
 class UserTrack
-  attr_reader :track, :added_by_user
+  attr_reader :tracks, :added_by_user
 
-  def initialize(track)
-    @track = track
+  def initialize
+    @tracks = []
     @added_by_user = Hash.new { |h, k| h[k] = [] }
   end
 end
 
+TrackId = Struct.new(:title, :artist_ids)
+
 def combine_tracks_by_user(playlist_tracks)
   playlist_tracks.each_with_object({}) do |playlist_track, tracks|
-    track_id = playlist_track.track.id
+    title = playlist_track.track.name
+    artist_ids = playlist_track.track.artists.map { |artist| artist.id }
+    track_id = TrackId.new(title, artist_ids)
 
-    if track_id
-      track = tracks[track_id] || UserTrack.new(playlist_track.track)
-      tracks[track_id] = track
+    tracks[track_id] ||= UserTrack.new
+    tracks[track_id].tracks << playlist_track.track
 
-      user_id = playlist_track.owner.id
-      track.added_by_user[user_id] << playlist_track.added_at
-    else
-      # Tracks with no IDs are from the user's local filesystem
-    end
+    user_id = playlist_track.owner.id
+    tracks[track_id].added_by_user[user_id] << playlist_track.added_at
   end
+end
+
+def choose_canonical_track(tracks)
+  # Spotify release dates may be a year, year-month or year-month-day
+  # but it's safe to just sort by the string value rather than trying
+  # to parse this, because all we care about is choosing a consistent
+  # track between runs of the script.
+  tracks.reject { |t| t.id.nil? }
+    .sort_by { |t| t.album.release_date }.first
 end
 
 ChartTrack = Struct.new(:track, :adds)
@@ -91,7 +100,7 @@ ChartTrack = Struct.new(:track, :adds)
 def tracks_added_in(user_tracks, from, to)
   tracks_in_range = []
 
-  user_tracks.each { |id, user_track|
+  user_tracks.values.each { |user_track|
     adds = user_track.added_by_user.values.select { |dates_added|
       earliest = dates_added.compact.min
       if earliest.nil?
@@ -105,7 +114,8 @@ def tracks_added_in(user_tracks, from, to)
     }.length
 
     if adds > 0
-      tracks_in_range << ChartTrack.new(user_track.track, adds)
+      canonical_track = choose_canonical_track(user_track.tracks)
+      tracks_in_range << ChartTrack.new(canonical_track, adds) unless canonical_track.nil?
     end
   }
 
