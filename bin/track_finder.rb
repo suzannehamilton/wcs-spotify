@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "retriable"
 require "rspotify"
 require "yaml"
 require "csv"
@@ -34,6 +35,18 @@ def search_playlists(search_term)
   results
 end
 
+def get_playlist_tracks(playlist, offset)
+  Retriable.retriable on: RestClient::RequestTimeout, tries: 3 do
+    return playlist.tracks(offset: offset)
+  end
+end
+
+def get_playlist_added_dates(playlist)
+  Retriable.retriable on: RestClient::RequestTimeout, tries: 3 do
+    playlist.tracks_added_at
+  end
+end
+
 PlaylistTrack = Struct.new(:track, :owner, :added_at)
 
 def fetch_tracks(playlists)
@@ -45,8 +58,8 @@ def fetch_tracks(playlists)
 
     playlist_tracks = []
     track_sets.times do |track_offset|
-      track_set = playlist.tracks(offset: track_offset * 100)
-      tracks_added_at = playlist.tracks_added_at
+      track_set = get_playlist_tracks(playlist, track_offset * 100)
+      tracks_added_at = get_playlist_added_dates(playlist)
 
       playlist_tracks << track_set.map { |track|
         PlaylistTrack.new(
