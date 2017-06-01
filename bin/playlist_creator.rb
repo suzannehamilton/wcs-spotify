@@ -58,6 +58,7 @@ chart = top_forty + equal_forty
 spotify_tracks = RSpotify::Track.find(chart.map { |t| t.id })
 
 chart_playlist = user.create_playlist!("Westie Charts: May 2017", public: false)
+chart_playlist.change_details!(description: "Top West Coast Swing tracks for May 2017")
 chart_playlist.add_tracks!(spotify_tracks)
 
 require 'pry'; binding.pry
