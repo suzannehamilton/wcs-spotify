@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "csv"
 require "net/http"
 require "rspotify"
 require "yaml"
@@ -43,6 +44,20 @@ authenticated_user = JSON.parse(user_response.body)
 
 user = RSpotify::User.new(authenticated_user.merge("credentials" => credentials))
 
-new_playlist = user.create_playlist!("some-playlist", public: false)
-require 'pry'; binding.pry
+ChartTrack = Struct.new(:id, :adds, :title, :artist_names)
+chart_tracks = []
 
+CSV.foreach("results/last_month_2017_May_2017-06-01_20:11:03.csv", headers: :first_row) do |row|
+  chart_tracks << ChartTrack.new(row["track_id"], row["adds"], row["name"], row["artists"])
+end
+
+top_forty = chart_tracks.take(40)
+equal_forty = chart_tracks[40..-1].select { |t| t.adds == top_forty.last.adds }
+chart = top_forty + equal_forty
+
+spotify_tracks = RSpotify::Track.find(chart.map { |t| t.id })
+
+chart_playlist = user.create_playlist!("Westie Charts: May 2017", public: false)
+chart_playlist.add_tracks!(spotify_tracks)
+
+require 'pry'; binding.pry
