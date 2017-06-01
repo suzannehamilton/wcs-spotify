@@ -47,18 +47,20 @@ user = RSpotify::User.new(authenticated_user.merge("credentials" => credentials)
 ChartTrack = Struct.new(:id, :adds, :title, :artist_names)
 chart_tracks = []
 
-CSV.foreach("results/last_month_2017_May_2017-06-01_20:11:03.csv", headers: :first_row) do |row|
+CSV.foreach("results/year_so_far_2017_2017-06-01_20:11:03.csv", headers: :first_row) do |row|
   chart_tracks << ChartTrack.new(row["track_id"], row["adds"], row["name"], row["artists"])
 end
 
-top_forty = chart_tracks.take(40)
-equal_forty = chart_tracks[40..-1].select { |t| t.adds == top_forty.last.adds }
-chart = top_forty + equal_forty
+chart_size = 40
+
+top_tracks = chart_tracks.take(chart_size)
+tracks_tied_for_last_place = chart_tracks[chart_size..-1].select { |t| t.adds == top_tracks.last.adds }
+chart = top_tracks + tracks_tied_for_last_place
 
 spotify_tracks = RSpotify::Track.find(chart.map { |t| t.id })
 
-chart_playlist = user.create_playlist!("Westie Charts: May 2017", public: false)
-chart_playlist.change_details!(description: "Top West Coast Swing tracks for May 2017")
+chart_playlist = user.create_playlist!("Westie Charts: 2017 so far", public: false)
+chart_playlist.change_details!(description: "Top West Coast Swing tracks for the year so far")
 chart_playlist.add_tracks!(spotify_tracks)
 
 require 'pry'; binding.pry
