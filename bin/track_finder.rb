@@ -176,30 +176,19 @@ user_tracks = combine_tracks_by_user(all_tracks)
 
 puts "Found #{user_tracks.length} unique tracks"
 
-earliest_add_date = user_tracks.values.map { |t| t.added_by_user.values }.flatten.compact.min
-
 month_end = DateTime.new(now.year, now.month, 1, 0, 0, 0, 0)
 month_beginning = month_end << 1
 
-while month_beginning.to_time > earliest_add_date do
-  puts "Finding tracks for #{month_beginning.strftime("%Y_%B")}"
+puts "Finding tracks for #{month_beginning.strftime("%Y_%B")}"
 
-  monthly_tracks = top_tracks(user_tracks, month_beginning, month_end)
-  save_tracks(monthly_tracks, "all_months_" + month_beginning.strftime("%Y_%B"), now)
-
-  month_end = month_beginning
-  month_beginning = month_end << 1
-end
+monthly_tracks = top_tracks(user_tracks, month_beginning, month_end)
+save_tracks(monthly_tracks, "last_month_" + month_beginning.strftime("%Y_%B"), now)
 
 year = now.year
+puts "Finding tracks for #{year}"
+year_end = DateTime.new(year + 1, 1, 1, 0, 0, 0, 0)
+year_beginning = DateTime.new(year, 1, 1, 0, 0, 0, 0)
 
-while year >= earliest_add_date.year do
-  puts "Finding tracks for #{year}"
-  year_end = DateTime.new(year + 1, 1, 1, 0, 0, 0, 0)
-  year_beginning = DateTime.new(year, 1, 1, 0, 0, 0, 0)
+yearly_tracks = top_tracks(user_tracks, year_beginning, year_end)
+save_tracks(yearly_tracks, "year_so_far_#{year}", now)
 
-  yearly_tracks = top_tracks(user_tracks, year_beginning, year_end)
-  save_tracks(yearly_tracks, "all_years_#{year}", now)
-
-  year = year - 1
-end
