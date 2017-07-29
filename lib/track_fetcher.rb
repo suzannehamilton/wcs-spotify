@@ -67,6 +67,9 @@ private
       puts "Searching for '#{search_term}' with offset #{offset}"
 
       result_set = RSpotify::Playlist.search(search_term, limit: set_size, offset: offset)
+
+      filtered_results = result_set.select { |p| matches_term?(p, search_term) }
+
       results.concat(result_set)
 
       offset += set_size
@@ -74,6 +77,18 @@ private
     end
 
     results
+  end
+
+  # Spotify search results are too broad. For example, the search term "wcs"
+  # matches playlists named "wc" which are very unlikely to be relevant. So only
+  # include playlists whose name or description contain the exact search term.
+  def matches_term?(playlist, search_term)
+    term = search_term.downcase
+    playlist.name.downcase.include?(term) ||
+      (playlist.description && playlist.description.downcase.include?(term))
+    rescue RestClient::ResourceNotFound
+      puts "Could not find playlist #{playlist.uri}"
+      false
   end
 
   def get_playlist_tracks(playlist, offset)
