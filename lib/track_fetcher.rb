@@ -15,7 +15,7 @@ class TrackFetcher
       "west coast swing",
       "westie",
     ]
-    
+
     # TODO: Reference file relative to this one?
     config = YAML::load_file("config.yaml")
 
@@ -78,13 +78,23 @@ private
 
   def get_playlist_tracks(playlist, offset)
     Retriable.retriable on: RestClient::RequestTimeout, tries: 3 do
-      return playlist.tracks(offset: offset)
+      begin
+        playlist.tracks(offset: offset)
+      rescue RestClient::ResourceNotFound
+        puts "Could not find track for playlist '#{playlist.uri}' with offset #{offset}"
+        []
+      end
     end
   end
 
   def get_playlist_added_dates(playlist)
     Retriable.retriable on: RestClient::RequestTimeout, tries: 3 do
-      playlist.tracks_added_at
+      begin
+        return playlist.tracks_added_at
+      rescue RestClient::ResourceNotFound
+        puts "Could not find track-added dates for playlist '#{playlist.uri}'"
+        []
+      end
     end
   end
 
@@ -196,7 +206,4 @@ private
       end
     end
   end
-
-
 end
-
