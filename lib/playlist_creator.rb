@@ -55,9 +55,13 @@ class PlaylistCreator
 
     spotify_tracks = RSpotify::Track.find(chart.map { |t| t.id })
 
-    chart_playlist = user.create_playlist!("Westie Charts: 2017 so far", public: false)
-    chart_playlist.change_details!(description: "Top West Coast Swing tracks for the year so far")
+    playlist = user.create_playlist!("Westie Charts: July 2017", public: false)
+
+    # Search for the playlist again. This is a workaround for a possible bug in
+    # the Spotify API: when a playlist is created, the playlist's owner is not
+    # populated correctly.
+    chart_playlist = RSpotify::Playlist.find('westiecharts', playlist.id)
+    chart_playlist.change_details!(description: "Top West Coast Swing tracks for July 2017")
     chart_playlist.add_tracks!(spotify_tracks)
   end
 end
-
