@@ -32,14 +32,14 @@ class PlaylistCreator
     tokens = JSON.parse(response.body)
     credentials = {"refresh_token" => tokens["refresh_token"], "token" => tokens["access_token"]}
 
-    user_uri = URI("https://api.spotify.com/v1/me")
-    user_request = Net::HTTP::Get.new(user_uri, "Authorization" => "Bearer #{tokens['access_token']}")
-    user_https = Net::HTTP.new(user_uri.hostname, user_uri.port)
-    user_https.use_ssl = true
-    user_response = user_https.request(user_request)
-    authenticated_user = JSON.parse(user_response.body)
-
-    user = RSpotify::User.new(authenticated_user.merge("credentials" => credentials))
+    base_user = RSpotify::User.find('westiecharts')
+    user = RSpotify::User.new(
+      "id" => 'westiecharts',
+      "credentials" => credentials,
+      "href" => base_user.href,
+      "type" => base_user.type,
+      "external_urls" => base_user.external_urls,
+      "uri" => base_user.uri)
 
     chart_tracks = []
 
