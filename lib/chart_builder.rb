@@ -6,7 +6,9 @@ require_relative "track_fetcher"
 class ChartBuilder < Thor
   desc "fetch_tracks", "Find recent popular tracks"
   def fetch_tracks
-    TrackFetcher.new.fetch_tracks
+    chart_results = TrackFetcher.new.fetch_tracks
+    chart_results.save_year_chart
+    chart_results.save_month_chart
   end
 
   desc "create_playlist", "Create a Spotify playlist for a chart"
@@ -25,4 +27,3 @@ class ChartBuilder < Thor
     PlaylistCreator.new.create_playlist(auth_code)
   end
 end
-

@@ -43,7 +43,6 @@ class TrackFetcher
     puts "Finding tracks for #{month_beginning.strftime("%Y_%B")}"
 
     monthly_tracks = top_tracks(user_tracks, month_beginning, month_end)
-    save_tracks(monthly_tracks, "last_month_" + month_beginning.strftime("%Y_%B"), now)
 
     year = now.year
     puts "Finding tracks for #{year}"
@@ -51,7 +50,8 @@ class TrackFetcher
     year_beginning = DateTime.new(year, 1, 1, 0, 0, 0, 0)
 
     yearly_tracks = top_tracks(user_tracks, year_beginning, year_end)
-    save_tracks(yearly_tracks, "year_so_far_#{year}", now)
+
+    ChartResults.new(yearly_tracks, monthly_tracks, year_beginning, month_beginning, now)
   end
 
 private
@@ -206,25 +206,5 @@ private
   def top_tracks(user_tracks, from, to)
     tracks_added_in(user_tracks, from, to)
       .sort_by { |chart_track| [-chart_track.adds, chart_track.track.id] }
-  end
-
-  def print_tracks(chart, number)
-    chart.take(number).each_with_index do |chart_track, index|
-      track = chart_track.track
-      artist_name = track.artists.map { |a| a.name }.join(", ")
-      puts "\##{index + 1} (#{chart_track.adds} adds) #{artist_name} - #{track.name}"
-    end
-  end
-
-  def save_tracks(chart, name, current_time)
-    file_name = "results/#{name}_#{current_time.strftime('%F_%T')}.csv"
-    CSV.open(file_name, "wb") do |csv|
-      csv << ["adds", "track_id", "artists", "name"]
-      chart.each do |chart_track|
-        track = chart_track.track
-        artist_name = track.artists.map { |a| a.name }.join(", ")
-        csv << [chart_track.adds, track.id, artist_name, track.name]
-      end
-    end
   end
 end
