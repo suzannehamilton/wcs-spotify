@@ -98,6 +98,9 @@ private
       rescue RestClient::ResourceNotFound
         puts "Could not find track for playlist '#{playlist.uri}' with offset #{offset}"
         []
+      rescue URI::InvalidURIError
+        puts "Playlist '#{playlist.uri}' has invalid URI"
+        []
       end
     end
   end
@@ -108,6 +111,9 @@ private
         return playlist.tracks_added_at
       rescue RestClient::ResourceNotFound
         puts "Could not find track-added dates for playlist '#{playlist.uri}'"
+        []
+      rescue URI::InvalidURIError
+        puts "Playlist '#{playlist.uri}' has invalid URI"
         []
       end
     end
