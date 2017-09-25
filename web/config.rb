@@ -19,6 +19,12 @@ data.playlists.years.each do |year, playlist_id|
   proxy "/#{year}/index.html", "year.html", locals: { year: year, playlist_id: playlist_id }
 end
 
+data.playlists.months.each do |year, months|
+  months.each do |month, playlist_id|
+    proxy "/#{year}/#{month}/index.html", "month.html", locals: { year: year, month: month, playlist_id: playlist_id }
+  end
+end
+
 # General configuration
 activate :directory_indexes
 
