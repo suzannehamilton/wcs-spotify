@@ -15,13 +15,8 @@ page '/*.txt', layout: false
 # Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", locals: {
 #  which_fake_page: "Rendering a fake page with a local variable" }
-yearly_playlists = {
-  2015 => "spotify:user:westiecharts:playlist:1bp4iizhemNjuHMRtiAQdC",
-  2016 => "spotify:user:westiecharts:playlist:2pDOKcm0XTRVY3iKQa3Q4S",
-  2017 => "spotify:user:westiecharts:playlist:20Z54LAupPDy26uL3axS4i"
-}
-yearly_playlists.each do |year, playlist_id|
-  proxy "/#{year}.html", "year.html", locals: { year: year, playlist_id: playlist_id }
+data.playlists.years.each do |year, playlist_id|
+  proxy "/#{year}/index.html", "year.html", locals: { year: year, playlist_id: playlist_id }
 end
 
 # General configuration
