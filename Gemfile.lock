@@ -15,6 +15,10 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     jwt (1.5.6)
+    little-plugger (1.1.4)
+    logging (2.2.2)
+      little-plugger (~> 1.1)
+      multi_json (~> 1.10)
     mime-types (2.99.3)
     multi_json (1.12.1)
     multi_xml (0.6.0)
@@ -70,6 +74,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  logging (~> 2.2.2)
   retriable (~> 3.0.2)
   rspec (~> 3.6)
   rspotify (~> 1.23)

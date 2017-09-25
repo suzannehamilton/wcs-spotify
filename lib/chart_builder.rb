@@ -1,9 +1,16 @@
+require "logging"
 require "thor"
 
 require_relative "playlist_creator"
 require_relative "track_fetcher"
 
 class ChartBuilder < Thor
+  Logging.logger.root.level = :info
+  Logging.logger.root.appenders = [
+    Logging.appenders.stdout("stdout"),
+    Logging.appenders.file("log/chart_builder.log")
+  ]
+
   desc "fetch_tracks", "Find recent popular tracks"
   def fetch_tracks
     chart_results = TrackFetcher.new.fetch_tracks

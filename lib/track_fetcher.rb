@@ -8,6 +8,10 @@ require "csv"
 require_relative "chart_results"
 
 class TrackFetcher
+  def initialize
+    @logger = Logging.logger[self]
+  end
+
   def fetch_tracks
     search_terms = [
       "wcs",
@@ -29,25 +33,25 @@ class TrackFetcher
       search_playlists(term)
     }.flatten
 
-    puts "Found #{wcs_playlists.length} playlists "
+    logger.info "Found #{wcs_playlists.length} playlists "
 
     all_tracks = fetch_tracks_for_playlists(wcs_playlists)
 
-    puts "Found #{all_tracks.length} playlist tracks"
+    logger.info "Found #{all_tracks.length} playlist tracks"
 
     user_tracks = combine_tracks_by_user(all_tracks)
 
-    puts "Found #{user_tracks.length} unique tracks"
+    logger.info "Found #{user_tracks.length} unique tracks"
 
     month_end = DateTime.new(now.year, now.month, 1, 0, 0, 0, 0)
     month_beginning = month_end << 1
 
-    puts "Finding tracks for #{month_beginning.strftime("%Y_%B")}"
+    logger.info "Finding tracks for #{month_beginning.strftime("%Y_%B")}"
 
     monthly_tracks = top_tracks(user_tracks, month_beginning, month_end)
 
     year = now.year
-    puts "Finding tracks for #{year}"
+    logger.info "Finding tracks for #{year}"
     year_end = DateTime.new(year + 1, 1, 1, 0, 0, 0, 0)
     year_beginning = DateTime.new(year, 1, 1, 0, 0, 0, 0)
 
@@ -58,6 +62,8 @@ class TrackFetcher
 
 private
 
+  attr_reader :logger
+
   def search_playlists(search_term)
     found_all_results = false
     offset = 0
@@ -66,7 +72,7 @@ private
     results = []
 
     while !found_all_results
-      puts "Searching for '#{search_term}' with offset #{offset}"
+      logger.info "Searching for '#{search_term}' with offset #{offset}"
 
       result_set = RSpotify::Playlist.search(search_term, limit: set_size, offset: offset)
 
@@ -89,7 +95,7 @@ private
     playlist.name.downcase.include?(term) ||
       (playlist.description && playlist.description.downcase.include?(term))
     rescue RestClient::ResourceNotFound
-      puts "Could not find playlist #{playlist.uri}"
+      logger.warn "Could not find playlist #{playlist.uri}"
       false
   end
 
@@ -98,10 +104,10 @@ private
       begin
         playlist.tracks(offset: offset)
       rescue RestClient::ResourceNotFound
-        puts "Could not find track for playlist '#{playlist.uri}' with offset #{offset}"
+        logger.warn "Could not find track for playlist '#{playlist.uri}' with offset #{offset}"
         []
       rescue URI::InvalidURIError
-        puts "Playlist '#{playlist.uri}' has invalid URI"
+        logger.warn "Playlist '#{playlist.uri}' has invalid URI"
         []
       end
     end
@@ -112,10 +118,10 @@ private
       begin
         return playlist.tracks_added_at
       rescue RestClient::ResourceNotFound
-        puts "Could not find track-added dates for playlist '#{playlist.uri}'"
+        logger.warn "Could not find track-added dates for playlist '#{playlist.uri}'"
         []
       rescue URI::InvalidURIError
-        puts "Playlist '#{playlist.uri}' has invalid URI"
+        logger.warn "Playlist '#{playlist.uri}' has invalid URI"
         []
       end
     end

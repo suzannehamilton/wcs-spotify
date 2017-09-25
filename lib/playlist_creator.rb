@@ -7,7 +7,11 @@ require "yaml"
 
 class PlaylistCreator
   ChartTrack = Struct.new(:id, :adds, :title, :artist_names)
- 
+
+  def initialize
+    @logger = Logging.logger[self]
+  end
+
   def create_playlist(auth_code)
     config = YAML::load_file("config.yaml")
     client_id = config["spotify_api"]["client_id"]
@@ -63,5 +67,11 @@ class PlaylistCreator
     chart_playlist = RSpotify::Playlist.find('westiecharts', playlist.id)
     chart_playlist.change_details!(description: "Top West Coast Swing tracks for July 2017")
     chart_playlist.add_tracks!(spotify_tracks)
+
+    logger.info "Created playlist '#{playlist.id}'"
   end
+
+private
+
+  attr_reader :logger
 end
