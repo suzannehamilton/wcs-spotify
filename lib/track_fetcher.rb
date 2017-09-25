@@ -5,6 +5,8 @@ require "rspotify"
 require "yaml"
 require "csv"
 
+require_relative "chart_results"
+
 class TrackFetcher
   def fetch_tracks
     search_terms = [

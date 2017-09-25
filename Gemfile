@@ -6,3 +6,4 @@ gem 'thor', '~> 0.19.4'
 
 # Testing
 gem 'rspec', '~> 3.6'
+gem 'webmock', '~> 3.0.1'
