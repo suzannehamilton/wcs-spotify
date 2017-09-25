@@ -25,6 +25,7 @@ yearly_playlists.each do |year, playlist_id|
 end
 
 # General configuration
+activate :directory_indexes
 
 # Reload the browser automatically whenever files change
 configure :development do
