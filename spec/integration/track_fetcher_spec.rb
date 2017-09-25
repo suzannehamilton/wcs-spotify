@@ -37,5 +37,15 @@ RSpec.describe TrackFetcher do
     end
   end
 
-  # TODO: Test year and month are correct in results object
+  it "generates a chart for the current year so far" do
+    empty_results = File.read("spec/fixtures/playlist_search/no_results.json")
+    stub_request(:get, /api.spotify.com\/v1\/search\?limit=50&offset=0&q=.+&type=playlist/)
+      .to_return(status: 200, body: empty_results, headers: {})
+
+    Timecop.freeze(DateTime.new(2014, 3, 12)) do
+      results = @track_fetcher.fetch_tracks
+
+      expect(results.year_beginning).to eq(DateTime.new(2014, 1, 1))
+    end
+  end
 end
