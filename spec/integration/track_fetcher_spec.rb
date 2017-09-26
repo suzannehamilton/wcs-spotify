@@ -120,7 +120,5 @@ RSpec.describe TrackFetcher do
       expect(matching_tracks.first.adds).to eq(2)
     end
   end
-
-  # TODO: Test that playlists without "wcs" in name are ignored. Possibly in unit tests
   # TODO: Test playlist and track scrolling. Possibly in unit tests.
 end

@@ -17,7 +17,7 @@ class PlaylistSearch
 
       filtered_results = result_set.select { |p| matches_term?(p, search_term) }
 
-      results.concat(result_set)
+      results.concat(filtered_results)
 
       offset += batch_size
       found_all_results = result_set.length < batch_size
