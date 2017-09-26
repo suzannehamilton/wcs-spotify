@@ -125,16 +125,16 @@ private
   TrackId = Struct.new(:title, :artist_ids)
 
   def combine_tracks_by_user(playlist_tracks)
-    playlist_tracks.each_with_object({}) do |playlist_track, tracks|
+    playlist_tracks.each_with_object(Hash.new { |h, k| h[k] = UserTrack.new }) do |playlist_track, tracks|
       title = playlist_track.track.name
       artist_ids = playlist_track.track.artists.map { |artist| artist.id }
       track_id = TrackId.new(title, artist_ids)
 
-      tracks[track_id] ||= UserTrack.new
-      tracks[track_id].tracks << playlist_track.track
-
-      user_id = playlist_track.owner.id
-      tracks[track_id].added_by_user[user_id] << playlist_track.added_at
+      tracks[track_id].update_adds(
+        playlist_track.track,
+        playlist_track.owner.id,
+        playlist_track.added_at
+      )
     end
   end
 
