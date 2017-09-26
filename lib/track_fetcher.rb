@@ -138,11 +138,6 @@ private
     end
   end
 
-  def choose_canonical_track(tracks)
-    tracks.reject { |t| t.id.nil? }
-      .sort_by { |t| t.id }.first
-  end
-
   ChartTrack = Struct.new(:track, :adds)
 
   def tracks_added_in(user_tracks, from, to)
@@ -162,7 +157,7 @@ private
       }.length
 
       if adds > 0
-        canonical_track = choose_canonical_track(user_track.tracks)
+        canonical_track = user_track.canonical_track
         tracks_in_range << ChartTrack.new(canonical_track, adds) unless canonical_track.nil?
       end
     }
