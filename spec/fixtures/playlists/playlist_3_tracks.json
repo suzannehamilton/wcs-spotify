@@ -1,0 +1,1218 @@
+{
+  "href" : "https://api.spotify.com/v1/users/some-user-3/playlists/0HLIzKQFTK7a0Xg2z6mRnv/tracks?offset=0&limit=100",
+  "items" : [ {
+    "added_at" : "2017-09-26T09:02:05Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "single",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/2qxJFvFYMEDqd7ui6kSAcq"
+          },
+          "href" : "https://api.spotify.com/v1/artists/2qxJFvFYMEDqd7ui6kSAcq",
+          "id" : "2qxJFvFYMEDqd7ui6kSAcq",
+          "name" : "Zedd",
+          "type" : "artist",
+          "uri" : "spotify:artist:2qxJFvFYMEDqd7ui6kSAcq"
+        }, {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/2wUjUUtkb5lvLKcGKsKqsR"
+          },
+          "href" : "https://api.spotify.com/v1/artists/2wUjUUtkb5lvLKcGKsKqsR",
+          "id" : "2wUjUUtkb5lvLKcGKsKqsR",
+          "name" : "Alessia Cara",
+          "type" : "artist",
+          "uri" : "spotify:artist:2wUjUUtkb5lvLKcGKsKqsR"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/0VMGOBhLrC5Q2bfZnrocVN"
+        },
+        "href" : "https://api.spotify.com/v1/albums/0VMGOBhLrC5Q2bfZnrocVN",
+        "id" : "0VMGOBhLrC5Q2bfZnrocVN",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/d3a63c44ea9fd4b6520dec379f1dff9f311f19b6",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/538269f080c79f99ca3ccc0c6a92e998f2158eec",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/e6d5158292e1056bee2a3b6908513b3812ee063d",
+          "width" : 64
+        } ],
+        "name" : "Stay",
+        "type" : "album",
+        "uri" : "spotify:album:0VMGOBhLrC5Q2bfZnrocVN"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/2qxJFvFYMEDqd7ui6kSAcq"
+        },
+        "href" : "https://api.spotify.com/v1/artists/2qxJFvFYMEDqd7ui6kSAcq",
+        "id" : "2qxJFvFYMEDqd7ui6kSAcq",
+        "name" : "Zedd",
+        "type" : "artist",
+        "uri" : "spotify:artist:2qxJFvFYMEDqd7ui6kSAcq"
+      }, {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/2wUjUUtkb5lvLKcGKsKqsR"
+        },
+        "href" : "https://api.spotify.com/v1/artists/2wUjUUtkb5lvLKcGKsKqsR",
+        "id" : "2wUjUUtkb5lvLKcGKsKqsR",
+        "name" : "Alessia Cara",
+        "type" : "artist",
+        "uri" : "spotify:artist:2wUjUUtkb5lvLKcGKsKqsR"
+      } ],
+      "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+      "disc_number" : 1,
+      "duration_ms" : 210090,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "USUM71700736"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/0dA2Mk56wEzDgegdC6R17g"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/0dA2Mk56wEzDgegdC6R17g",
+      "id" : "0dA2Mk56wEzDgegdC6R17g",
+      "name" : "Stay (with Alessia Cara)",
+      "popularity" : 88,
+      "preview_url" : null,
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:0dA2Mk56wEzDgegdC6R17g"
+    }
+  }, {
+    "added_at" : "2017-09-26T09:02:30Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "single",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/6VuMaDnrHyPL1p4EHjYLi7"
+          },
+          "href" : "https://api.spotify.com/v1/artists/6VuMaDnrHyPL1p4EHjYLi7",
+          "id" : "6VuMaDnrHyPL1p4EHjYLi7",
+          "name" : "Charlie Puth",
+          "type" : "artist",
+          "uri" : "spotify:artist:6VuMaDnrHyPL1p4EHjYLi7"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/0t0NkQulrNkxw2oUZZHboA"
+        },
+        "href" : "https://api.spotify.com/v1/albums/0t0NkQulrNkxw2oUZZHboA",
+        "id" : "0t0NkQulrNkxw2oUZZHboA",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/6265da980122bf65c65414fc9745097cd743cf35",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/b5ab3ac1e2ae84b25a44c477fc7d3f28a5715ea6",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/fb922b1a286cc89120a5f3c4afeb3406ed344802",
+          "width" : 64
+        } ],
+        "name" : "Attention",
+        "type" : "album",
+        "uri" : "spotify:album:0t0NkQulrNkxw2oUZZHboA"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/6VuMaDnrHyPL1p4EHjYLi7"
+        },
+        "href" : "https://api.spotify.com/v1/artists/6VuMaDnrHyPL1p4EHjYLi7",
+        "id" : "6VuMaDnrHyPL1p4EHjYLi7",
+        "name" : "Charlie Puth",
+        "type" : "artist",
+        "uri" : "spotify:artist:6VuMaDnrHyPL1p4EHjYLi7"
+      } ],
+      "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+      "disc_number" : 1,
+      "duration_ms" : 211475,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "USAT21700928"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/4iLqG9SeJSnt0cSPICSjxv"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/4iLqG9SeJSnt0cSPICSjxv",
+      "id" : "4iLqG9SeJSnt0cSPICSjxv",
+      "name" : "Attention",
+      "popularity" : 98,
+      "preview_url" : "https://p.scdn.co/mp3-preview/e20bdb50a10a7c5ada4bd34252bed3bfa3823b7a?cid=8897482848704f2a8f8d7c79726a70d4",
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:4iLqG9SeJSnt0cSPICSjxv"
+    }
+  }, {
+    "added_at" : "2017-09-26T09:02:38Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "single",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V"
+          },
+          "href" : "https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V",
+          "id" : "6eUKZXaKkcviH0Ku9w2n3V",
+          "name" : "Ed Sheeran",
+          "type" : "artist",
+          "uri" : "spotify:artist:6eUKZXaKkcviH0Ku9w2n3V"
+        } ],
+        "available_markets" : [ ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/7oJa8bPFKVbq4c7NswXHw8"
+        },
+        "href" : "https://api.spotify.com/v1/albums/7oJa8bPFKVbq4c7NswXHw8",
+        "id" : "7oJa8bPFKVbq4c7NswXHw8",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/621d2909bcc2c26cd0b274aab0414c9d422a1576",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/c976bfc96d5e44820e553a16a6097cd02a61fd2f",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/089726b25ce5a55b906b3b65580a517b65c7c881",
+          "width" : 64
+        } ],
+        "name" : "Shape of You",
+        "type" : "album",
+        "uri" : "spotify:album:7oJa8bPFKVbq4c7NswXHw8"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V"
+        },
+        "href" : "https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V",
+        "id" : "6eUKZXaKkcviH0Ku9w2n3V",
+        "name" : "Ed Sheeran",
+        "type" : "artist",
+        "uri" : "spotify:artist:6eUKZXaKkcviH0Ku9w2n3V"
+      } ],
+      "available_markets" : [ ],
+      "disc_number" : 1,
+      "duration_ms" : 233712,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "GBAHS1600463"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/0FE9t6xYkqWXU2ahLh6D8X"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/0FE9t6xYkqWXU2ahLh6D8X",
+      "id" : "0FE9t6xYkqWXU2ahLh6D8X",
+      "name" : "Shape of You",
+      "popularity" : 91,
+      "preview_url" : null,
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:0FE9t6xYkqWXU2ahLh6D8X"
+    }
+  }, {
+    "added_at" : "2017-08-31T23:59:59Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+          },
+          "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+          "id" : "0LyfQWJT6nXafLPZqxe9Of",
+          "name" : "Various Artists",
+          "type" : "artist",
+          "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/42owzqvWYJRT6DNdmCedOx"
+        },
+        "href" : "https://api.spotify.com/v1/albums/42owzqvWYJRT6DNdmCedOx",
+        "id" : "42owzqvWYJRT6DNdmCedOx",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/30a59febd973c431c61418855ca191d951eaa40c",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/31d67fe08cdfef2c2c0219f2f69664fa994c063d",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/5136590a52c5fcaca7620d813985f47afcd0246b",
+          "width" : 64
+        } ],
+        "name" : "NOW That's What I Call Music! 96",
+        "type" : "album",
+        "uri" : "spotify:album:42owzqvWYJRT6DNdmCedOx"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/0du5cEVh5yTK9QJze8zA0C"
+        },
+        "href" : "https://api.spotify.com/v1/artists/0du5cEVh5yTK9QJze8zA0C",
+        "id" : "0du5cEVh5yTK9QJze8zA0C",
+        "name" : "Bruno Mars",
+        "type" : "artist",
+        "uri" : "spotify:artist:0du5cEVh5yTK9QJze8zA0C"
+      } ],
+      "available_markets" : [ ],
+      "disc_number" : 1,
+      "duration_ms" : 225120,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "USAT21603246"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/1UsahI9aCcctDFScjsXt6l"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/1UsahI9aCcctDFScjsXt6l",
+      "id" : "1UsahI9aCcctDFScjsXt6l",
+      "name" : "24K Magic",
+      "popularity" : 7,
+      "preview_url" : null,
+      "track_number" : 8,
+      "type" : "track",
+      "uri" : "spotify:track:1UsahI9aCcctDFScjsXt6l"
+    }
+  }, {
+    "added_at" : "2017-09-26T09:03:17Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "single",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/1Xyo4u8uXC1ZmMpatF05PJ"
+          },
+          "href" : "https://api.spotify.com/v1/artists/1Xyo4u8uXC1ZmMpatF05PJ",
+          "id" : "1Xyo4u8uXC1ZmMpatF05PJ",
+          "name" : "The Weeknd",
+          "type" : "artist",
+          "uri" : "spotify:artist:1Xyo4u8uXC1ZmMpatF05PJ"
+        } ],
+        "available_markets" : [ ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/0X96HlegVXzQfJVIBWCRp6"
+        },
+        "href" : "https://api.spotify.com/v1/albums/0X96HlegVXzQfJVIBWCRp6",
+        "id" : "0X96HlegVXzQfJVIBWCRp6",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/818cf2dcae465de2c48c791829b1ca03606989a1",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/44cd8059b7608e3d520398d37cedc0095384feb0",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/1847eae398dbd7682864144e2fdfbbcc9cbe180d",
+          "width" : 64
+        } ],
+        "name" : "Starboy",
+        "type" : "album",
+        "uri" : "spotify:album:0X96HlegVXzQfJVIBWCRp6"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/1Xyo4u8uXC1ZmMpatF05PJ"
+        },
+        "href" : "https://api.spotify.com/v1/artists/1Xyo4u8uXC1ZmMpatF05PJ",
+        "id" : "1Xyo4u8uXC1ZmMpatF05PJ",
+        "name" : "The Weeknd",
+        "type" : "artist",
+        "uri" : "spotify:artist:1Xyo4u8uXC1ZmMpatF05PJ"
+      }, {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+        },
+        "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+        "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+        "name" : "Daft Punk",
+        "type" : "artist",
+        "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+      } ],
+      "available_markets" : [ ],
+      "disc_number" : 1,
+      "duration_ms" : 230466,
+      "explicit" : true,
+      "external_ids" : {
+        "isrc" : "USUG11600976"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/2IY7eOUDjw2ArKYxKa2jXc"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/2IY7eOUDjw2ArKYxKa2jXc",
+      "id" : "2IY7eOUDjw2ArKYxKa2jXc",
+      "name" : "Starboy",
+      "popularity" : 22,
+      "preview_url" : null,
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:2IY7eOUDjw2ArKYxKa2jXc"
+    }
+  }, {
+    "added_at" : "2013-05-10T14:10:50Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/2hWr3AjjKOCVmWcwvuT4uM"
+          },
+          "href" : "https://api.spotify.com/v1/artists/2hWr3AjjKOCVmWcwvuT4uM",
+          "id" : "2hWr3AjjKOCVmWcwvuT4uM",
+          "name" : "Angie Stone",
+          "type" : "artist",
+          "uri" : "spotify:artist:2hWr3AjjKOCVmWcwvuT4uM"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/1pJld4hH1xL3ONIlWZEhXw"
+        },
+        "href" : "https://api.spotify.com/v1/albums/1pJld4hH1xL3ONIlWZEhXw",
+        "id" : "1pJld4hH1xL3ONIlWZEhXw",
+        "images" : [ {
+          "height" : 626,
+          "url" : "https://i.scdn.co/image/66300bf529c5de766a02978b3e3cc6c294ccf85e",
+          "width" : 640
+        }, {
+          "height" : 293,
+          "url" : "https://i.scdn.co/image/3e9656089aeb5daa7c285ddba27c65a5a28f268b",
+          "width" : 300
+        }, {
+          "height" : 63,
+          "url" : "https://i.scdn.co/image/200cdb00fb8d9f278ea28eab157aa029e65deb04",
+          "width" : 64
+        } ],
+        "name" : "Mahogany Soul",
+        "type" : "album",
+        "uri" : "spotify:album:1pJld4hH1xL3ONIlWZEhXw"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/2hWr3AjjKOCVmWcwvuT4uM"
+        },
+        "href" : "https://api.spotify.com/v1/artists/2hWr3AjjKOCVmWcwvuT4uM",
+        "id" : "2hWr3AjjKOCVmWcwvuT4uM",
+        "name" : "Angie Stone",
+        "type" : "artist",
+        "uri" : "spotify:artist:2hWr3AjjKOCVmWcwvuT4uM"
+      } ],
+      "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+      "disc_number" : 1,
+      "duration_ms" : 270893,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "USJAY0100309"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/3tZm76otWH20xzJC7icHCk"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/3tZm76otWH20xzJC7icHCk",
+      "id" : "3tZm76otWH20xzJC7icHCk",
+      "name" : "Wish I Didn't Miss You",
+      "popularity" : 60,
+      "preview_url" : "https://p.scdn.co/mp3-preview/5f4f2f3546c74b293e06ef6b5c142bfdce25c390?cid=8897482848704f2a8f8d7c79726a70d4",
+      "track_number" : 6,
+      "type" : "track",
+      "uri" : "spotify:track:3tZm76otWH20xzJC7icHCk"
+    }
+  }, {
+    "added_at" : "2017-09-26T09:04:34Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/4f9iBmdUOhQWeP7dcAn1pf"
+          },
+          "href" : "https://api.spotify.com/v1/artists/4f9iBmdUOhQWeP7dcAn1pf",
+          "id" : "4f9iBmdUOhQWeP7dcAn1pf",
+          "name" : "Rag'n'Bone Man",
+          "type" : "artist",
+          "uri" : "spotify:artist:4f9iBmdUOhQWeP7dcAn1pf"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/4RtiPIrZPPG8iPZC9xQnP3"
+        },
+        "href" : "https://api.spotify.com/v1/albums/4RtiPIrZPPG8iPZC9xQnP3",
+        "id" : "4RtiPIrZPPG8iPZC9xQnP3",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/87f4fc6c5f7a24e548cea729d35a74d361082275",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/baf2fb18808a51844578e5bba52a5e055379ef5e",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/b5ad766075528c59b710821f8b6c0e88efd0186d",
+          "width" : 64
+        } ],
+        "name" : "Human (Remixes)",
+        "type" : "album",
+        "uri" : "spotify:album:4RtiPIrZPPG8iPZC9xQnP3"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/4f9iBmdUOhQWeP7dcAn1pf"
+        },
+        "href" : "https://api.spotify.com/v1/artists/4f9iBmdUOhQWeP7dcAn1pf",
+        "id" : "4f9iBmdUOhQWeP7dcAn1pf",
+        "name" : "Rag'n'Bone Man",
+        "type" : "artist",
+        "uri" : "spotify:artist:4f9iBmdUOhQWeP7dcAn1pf"
+      } ],
+      "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+      "disc_number" : 1,
+      "duration_ms" : 229773,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "GBARL1601641"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/70fdF045x3n1ahv7MG6Z4H"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/70fdF045x3n1ahv7MG6Z4H",
+      "id" : "70fdF045x3n1ahv7MG6Z4H",
+      "name" : "Human - Acoustic",
+      "popularity" : 65,
+      "preview_url" : "https://p.scdn.co/mp3-preview/267333a2db60426cab1d0dcf656275a9587d43f2?cid=8897482848704f2a8f8d7c79726a70d4",
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:70fdF045x3n1ahv7MG6Z4H"
+    }
+  }, {
+    "added_at" : "2017-09-26T09:04:37Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/4f9iBmdUOhQWeP7dcAn1pf"
+          },
+          "href" : "https://api.spotify.com/v1/artists/4f9iBmdUOhQWeP7dcAn1pf",
+          "id" : "4f9iBmdUOhQWeP7dcAn1pf",
+          "name" : "Rag'n'Bone Man",
+          "type" : "artist",
+          "uri" : "spotify:artist:4f9iBmdUOhQWeP7dcAn1pf"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/4RtiPIrZPPG8iPZC9xQnP3"
+        },
+        "href" : "https://api.spotify.com/v1/albums/4RtiPIrZPPG8iPZC9xQnP3",
+        "id" : "4RtiPIrZPPG8iPZC9xQnP3",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/87f4fc6c5f7a24e548cea729d35a74d361082275",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/baf2fb18808a51844578e5bba52a5e055379ef5e",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/b5ad766075528c59b710821f8b6c0e88efd0186d",
+          "width" : 64
+        } ],
+        "name" : "Human (Remixes)",
+        "type" : "album",
+        "uri" : "spotify:album:4RtiPIrZPPG8iPZC9xQnP3"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/4f9iBmdUOhQWeP7dcAn1pf"
+        },
+        "href" : "https://api.spotify.com/v1/artists/4f9iBmdUOhQWeP7dcAn1pf",
+        "id" : "4f9iBmdUOhQWeP7dcAn1pf",
+        "name" : "Rag'n'Bone Man",
+        "type" : "artist",
+        "uri" : "spotify:artist:4f9iBmdUOhQWeP7dcAn1pf"
+      } ],
+      "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+      "disc_number" : 1,
+      "duration_ms" : 229773,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "GBARL1601641"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/70fdF045x3n1ahv7MG6Z4H"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/70fdF045x3n1ahv7MG6Z4H",
+      "id" : "70fdF045x3n1ahv7MG6Z4H",
+      "name" : "Human - Acoustic",
+      "popularity" : 65,
+      "preview_url" : "https://p.scdn.co/mp3-preview/267333a2db60426cab1d0dcf656275a9587d43f2?cid=8897482848704f2a8f8d7c79726a70d4",
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:70fdF045x3n1ahv7MG6Z4H"
+    }
+  }, {
+    "added_at" : "2017-09-26T09:04:41Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/4f9iBmdUOhQWeP7dcAn1pf"
+          },
+          "href" : "https://api.spotify.com/v1/artists/4f9iBmdUOhQWeP7dcAn1pf",
+          "id" : "4f9iBmdUOhQWeP7dcAn1pf",
+          "name" : "Rag'n'Bone Man",
+          "type" : "artist",
+          "uri" : "spotify:artist:4f9iBmdUOhQWeP7dcAn1pf"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/4RtiPIrZPPG8iPZC9xQnP3"
+        },
+        "href" : "https://api.spotify.com/v1/albums/4RtiPIrZPPG8iPZC9xQnP3",
+        "id" : "4RtiPIrZPPG8iPZC9xQnP3",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/87f4fc6c5f7a24e548cea729d35a74d361082275",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/baf2fb18808a51844578e5bba52a5e055379ef5e",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/b5ad766075528c59b710821f8b6c0e88efd0186d",
+          "width" : 64
+        } ],
+        "name" : "Human (Remixes)",
+        "type" : "album",
+        "uri" : "spotify:album:4RtiPIrZPPG8iPZC9xQnP3"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/4f9iBmdUOhQWeP7dcAn1pf"
+        },
+        "href" : "https://api.spotify.com/v1/artists/4f9iBmdUOhQWeP7dcAn1pf",
+        "id" : "4f9iBmdUOhQWeP7dcAn1pf",
+        "name" : "Rag'n'Bone Man",
+        "type" : "artist",
+        "uri" : "spotify:artist:4f9iBmdUOhQWeP7dcAn1pf"
+      } ],
+      "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+      "disc_number" : 1,
+      "duration_ms" : 229773,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "GBARL1601641"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/70fdF045x3n1ahv7MG6Z4H"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/70fdF045x3n1ahv7MG6Z4H",
+      "id" : "70fdF045x3n1ahv7MG6Z4H",
+      "name" : "Human - Acoustic",
+      "popularity" : 65,
+      "preview_url" : "https://p.scdn.co/mp3-preview/267333a2db60426cab1d0dcf656275a9587d43f2?cid=8897482848704f2a8f8d7c79726a70d4",
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:70fdF045x3n1ahv7MG6Z4H"
+    }
+  }, {
+    "added_at" : "2017-09-26T09:05:29Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "single",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/5vBSrE1xujD2FXYRarbAXc"
+          },
+          "href" : "https://api.spotify.com/v1/artists/5vBSrE1xujD2FXYRarbAXc",
+          "id" : "5vBSrE1xujD2FXYRarbAXc",
+          "name" : "Years & Years",
+          "type" : "artist",
+          "uri" : "spotify:artist:5vBSrE1xujD2FXYRarbAXc"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/2dzxJbiJKhQo2aqUrtjZP0"
+        },
+        "href" : "https://api.spotify.com/v1/albums/2dzxJbiJKhQo2aqUrtjZP0",
+        "id" : "2dzxJbiJKhQo2aqUrtjZP0",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/018090a621da4b3de48f9758691e4644a5bb6456",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/94628c093061d6f60402f296f9c23926d2b57c9b",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/81d6ede913519cbb5a005f712c1f179569731d08",
+          "width" : 64
+        } ],
+        "name" : "Take Shelter",
+        "type" : "album",
+        "uri" : "spotify:album:2dzxJbiJKhQo2aqUrtjZP0"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/5vBSrE1xujD2FXYRarbAXc"
+        },
+        "href" : "https://api.spotify.com/v1/artists/5vBSrE1xujD2FXYRarbAXc",
+        "id" : "5vBSrE1xujD2FXYRarbAXc",
+        "name" : "Years & Years",
+        "type" : "artist",
+        "uri" : "spotify:artist:5vBSrE1xujD2FXYRarbAXc"
+      } ],
+      "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+      "disc_number" : 1,
+      "duration_ms" : 245032,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "GBUM71402912"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/0dftdFz4eI4kGctUMLBxUc"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/0dftdFz4eI4kGctUMLBxUc",
+      "id" : "0dftdFz4eI4kGctUMLBxUc",
+      "name" : "Take Shelter",
+      "popularity" : 48,
+      "preview_url" : null,
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:0dftdFz4eI4kGctUMLBxUc"
+    }
+  }, {
+    "added_at" : "2017-09-26T09:06:33Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "single",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/7xEFii6utZmQ61kX59HmLH"
+          },
+          "href" : "https://api.spotify.com/v1/artists/7xEFii6utZmQ61kX59HmLH",
+          "id" : "7xEFii6utZmQ61kX59HmLH",
+          "name" : "FRENSHIP",
+          "type" : "artist",
+          "uri" : "spotify:artist:7xEFii6utZmQ61kX59HmLH"
+        }, {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/1oKdM70mJD8VvDOTKeS8t1"
+          },
+          "href" : "https://api.spotify.com/v1/artists/1oKdM70mJD8VvDOTKeS8t1",
+          "id" : "1oKdM70mJD8VvDOTKeS8t1",
+          "name" : "Emily Warren",
+          "type" : "artist",
+          "uri" : "spotify:artist:1oKdM70mJD8VvDOTKeS8t1"
+        } ],
+        "available_markets" : [ ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/5y6AnqHZ247zdHCF9avGCU"
+        },
+        "href" : "https://api.spotify.com/v1/albums/5y6AnqHZ247zdHCF9avGCU",
+        "id" : "5y6AnqHZ247zdHCF9avGCU",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/dc284fcd7e581aa2b7ca56f28c7c74f0ca0ad393",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/9435450efbc9c9bea8b4b2d2cc91bad02183e03c",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/b6e9d745db370a07fde05012c6d830aaf94d8e9f",
+          "width" : 64
+        } ],
+        "name" : "Capsize",
+        "type" : "album",
+        "uri" : "spotify:album:5y6AnqHZ247zdHCF9avGCU"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/7xEFii6utZmQ61kX59HmLH"
+        },
+        "href" : "https://api.spotify.com/v1/artists/7xEFii6utZmQ61kX59HmLH",
+        "id" : "7xEFii6utZmQ61kX59HmLH",
+        "name" : "FRENSHIP",
+        "type" : "artist",
+        "uri" : "spotify:artist:7xEFii6utZmQ61kX59HmLH"
+      }, {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/1oKdM70mJD8VvDOTKeS8t1"
+        },
+        "href" : "https://api.spotify.com/v1/artists/1oKdM70mJD8VvDOTKeS8t1",
+        "id" : "1oKdM70mJD8VvDOTKeS8t1",
+        "name" : "Emily Warren",
+        "type" : "artist",
+        "uri" : "spotify:artist:1oKdM70mJD8VvDOTKeS8t1"
+      } ],
+      "available_markets" : [ ],
+      "disc_number" : 1,
+      "duration_ms" : 237760,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "USSM11605173"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/3GBlLqIYgB8zWaeWDNJzdh"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/3GBlLqIYgB8zWaeWDNJzdh",
+      "id" : "3GBlLqIYgB8zWaeWDNJzdh",
+      "name" : "Capsize",
+      "popularity" : 27,
+      "preview_url" : null,
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:3GBlLqIYgB8zWaeWDNJzdh"
+    }
+  }, {
+    "added_at" : "2013-01-12T22:06:00Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/7zliF6Q946WznVk3ZMYhZX"
+          },
+          "href" : "https://api.spotify.com/v1/artists/7zliF6Q946WznVk3ZMYhZX",
+          "id" : "7zliF6Q946WznVk3ZMYhZX",
+          "name" : "The Sugarhill Gang",
+          "type" : "artist",
+          "uri" : "spotify:artist:7zliF6Q946WznVk3ZMYhZX"
+        } ],
+        "available_markets" : [ ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/2537kBXqlXc14LvaHhJ9Yk"
+        },
+        "href" : "https://api.spotify.com/v1/albums/2537kBXqlXc14LvaHhJ9Yk",
+        "id" : "2537kBXqlXc14LvaHhJ9Yk",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/d2676a68e9cd2c8e79e2be2b840065ec5d40788b",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/ef0ec03b73a13496a6560383c5b9b0bb5371dbc3",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/521c3f15967a3e2e3ebf6264b61943b52d6ed55e",
+          "width" : 64
+        } ],
+        "name" : "The Sugarhill Gang - 30th Anniversary Edition (Expanded Version)",
+        "type" : "album",
+        "uri" : "spotify:album:2537kBXqlXc14LvaHhJ9Yk"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/7zliF6Q946WznVk3ZMYhZX"
+        },
+        "href" : "https://api.spotify.com/v1/artists/7zliF6Q946WznVk3ZMYhZX",
+        "id" : "7zliF6Q946WznVk3ZMYhZX",
+        "name" : "The Sugarhill Gang",
+        "type" : "artist",
+        "uri" : "spotify:artist:7zliF6Q946WznVk3ZMYhZX"
+      } ],
+      "available_markets" : [ ],
+      "disc_number" : 1,
+      "duration_ms" : 235840,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "GBUM71021600"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/24uWTDsjSCWHXmZritNFvu"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/24uWTDsjSCWHXmZritNFvu",
+      "id" : "24uWTDsjSCWHXmZritNFvu",
+      "name" : "Rapper's Delight - Single Version",
+      "popularity" : 14,
+      "preview_url" : null,
+      "track_number" : 6,
+      "type" : "track",
+      "uri" : "spotify:track:24uWTDsjSCWHXmZritNFvu"
+    }
+  }, {
+    "added_at" : "2017-03-14T15:21:30Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/4gzpq5DPGxSnKTe4SA8HAU"
+          },
+          "href" : "https://api.spotify.com/v1/artists/4gzpq5DPGxSnKTe4SA8HAU",
+          "id" : "4gzpq5DPGxSnKTe4SA8HAU",
+          "name" : "Coldplay",
+          "type" : "artist",
+          "uri" : "spotify:artist:4gzpq5DPGxSnKTe4SA8HAU"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/3cfAM8b8KqJRoIzt3zLKqw"
+        },
+        "href" : "https://api.spotify.com/v1/albums/3cfAM8b8KqJRoIzt3zLKqw",
+        "id" : "3cfAM8b8KqJRoIzt3zLKqw",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/9c2c4a9ac9726bfd996ff96383178bbb5efc59ab",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/2f66abbf986dcc2fb1dca9bceb892123d5d10c3a",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/8a87ac474db652dd6cd9fb208be0f37a4ea9c36b",
+          "width" : 64
+        } ],
+        "name" : "A Head Full Of Dreams",
+        "type" : "album",
+        "uri" : "spotify:album:3cfAM8b8KqJRoIzt3zLKqw"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/4gzpq5DPGxSnKTe4SA8HAU"
+        },
+        "href" : "https://api.spotify.com/v1/artists/4gzpq5DPGxSnKTe4SA8HAU",
+        "id" : "4gzpq5DPGxSnKTe4SA8HAU",
+        "name" : "Coldplay",
+        "type" : "artist",
+        "uri" : "spotify:artist:4gzpq5DPGxSnKTe4SA8HAU"
+      } ],
+      "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+      "disc_number" : 1,
+      "duration_ms" : 258826,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "GBAYE1500979"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/3RiPr603aXAoi4GHyXx0uy"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/3RiPr603aXAoi4GHyXx0uy",
+      "id" : "3RiPr603aXAoi4GHyXx0uy",
+      "name" : "Hymn For The Weekend",
+      "popularity" : 82,
+      "preview_url" : "https://p.scdn.co/mp3-preview/0e36103f9c968a7f07d502003a109c314f36ae9c?cid=8897482848704f2a8f8d7c79726a70d4",
+      "track_number" : 3,
+      "type" : "track",
+      "uri" : "spotify:track:3RiPr603aXAoi4GHyXx0uy"
+    }
+  }, {
+    "added_at" : "2017-05-02T12:12:00Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/6VuMaDnrHyPL1p4EHjYLi7"
+          },
+          "href" : "https://api.spotify.com/v1/artists/6VuMaDnrHyPL1p4EHjYLi7",
+          "id" : "6VuMaDnrHyPL1p4EHjYLi7",
+          "name" : "Charlie Puth",
+          "type" : "artist",
+          "uri" : "spotify:artist:6VuMaDnrHyPL1p4EHjYLi7"
+        } ],
+        "available_markets" : [ ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/3kndSWeE2IYOrZEToZrHEV"
+        },
+        "href" : "https://api.spotify.com/v1/albums/3kndSWeE2IYOrZEToZrHEV",
+        "id" : "3kndSWeE2IYOrZEToZrHEV",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/82751e46dd9bf85b38de6c3561c08f19b3f61e13",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/575905f6c3b93383a56313ce3425d3b85057fa84",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/f8504711cba2941971e2a60553b4b3f235535acc",
+          "width" : 64
+        } ],
+        "name" : "Nine Track Mind",
+        "type" : "album",
+        "uri" : "spotify:album:3kndSWeE2IYOrZEToZrHEV"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/6VuMaDnrHyPL1p4EHjYLi7"
+        },
+        "href" : "https://api.spotify.com/v1/artists/6VuMaDnrHyPL1p4EHjYLi7",
+        "id" : "6VuMaDnrHyPL1p4EHjYLi7",
+        "name" : "Charlie Puth",
+        "type" : "artist",
+        "uri" : "spotify:artist:6VuMaDnrHyPL1p4EHjYLi7"
+      }, {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/0C8ZW7ezQVs4URX5aX7Kqx"
+        },
+        "href" : "https://api.spotify.com/v1/artists/0C8ZW7ezQVs4URX5aX7Kqx",
+        "id" : "0C8ZW7ezQVs4URX5aX7Kqx",
+        "name" : "Selena Gomez",
+        "type" : "artist",
+        "uri" : "spotify:artist:0C8ZW7ezQVs4URX5aX7Kqx"
+      } ],
+      "available_markets" : [ ],
+      "disc_number" : 1,
+      "duration_ms" : 217706,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "USAT21502909"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/37FXw5QGFN7uwwsLy8uAc0"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/37FXw5QGFN7uwwsLy8uAc0",
+      "id" : "37FXw5QGFN7uwwsLy8uAc0",
+      "name" : "We Don't Talk Anymore (feat. Selena Gomez)",
+      "popularity" : 78,
+      "preview_url" : null,
+      "track_number" : 5,
+      "type" : "track",
+      "uri" : "spotify:track:37FXw5QGFN7uwwsLy8uAc0"
+    }
+  }, {
+    "added_at" : "2017-09-26T09:07:47Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3",
+      "id" : "some-user-3",
+      "type" : "user",
+      "uri" : "spotify:user:some-user-3"
+    },
+    "is_local" : false,
+    "track" : {
+      "album" : {
+        "album_type" : "single",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/04vj3iPUiVh5melWr0w3xT"
+          },
+          "href" : "https://api.spotify.com/v1/artists/04vj3iPUiVh5melWr0w3xT",
+          "id" : "04vj3iPUiVh5melWr0w3xT",
+          "name" : "Christine and the Queens",
+          "type" : "artist",
+          "uri" : "spotify:artist:04vj3iPUiVh5melWr0w3xT"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/0RSpIfOBhaPpKoxl71Kwu9"
+        },
+        "href" : "https://api.spotify.com/v1/albums/0RSpIfOBhaPpKoxl71Kwu9",
+        "id" : "0RSpIfOBhaPpKoxl71Kwu9",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/3657a97c489a906310915e64586d7bb30754661a",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/7286d54017f0e793a1be26c478032b21073c1abb",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/968d162b03cf58c4c60cdca6a7f84c767b6958a5",
+          "width" : 64
+        } ],
+        "name" : "Tilted",
+        "type" : "album",
+        "uri" : "spotify:album:0RSpIfOBhaPpKoxl71Kwu9"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/04vj3iPUiVh5melWr0w3xT"
+        },
+        "href" : "https://api.spotify.com/v1/artists/04vj3iPUiVh5melWr0w3xT",
+        "id" : "04vj3iPUiVh5melWr0w3xT",
+        "name" : "Christine and the Queens",
+        "type" : "artist",
+        "uri" : "spotify:artist:04vj3iPUiVh5melWr0w3xT"
+      } ],
+      "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TH", "TR", "TW", "US", "UY" ],
+      "disc_number" : 1,
+      "duration_ms" : 233247,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "FR6P11500950"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/6lL22DLq2riNjSaFQLSvdw"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/6lL22DLq2riNjSaFQLSvdw",
+      "id" : "6lL22DLq2riNjSaFQLSvdw",
+      "name" : "Tilted",
+      "popularity" : 51,
+      "preview_url" : "https://p.scdn.co/mp3-preview/523d810d6fc006104329266bcd64693b87d998bd?cid=8897482848704f2a8f8d7c79726a70d4",
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:6lL22DLq2riNjSaFQLSvdw"
+    }
+  } ],
+  "limit" : 100,
+  "next" : null,
+  "offset" : 0,
+  "previous" : null,
+  "total" : 15
+}

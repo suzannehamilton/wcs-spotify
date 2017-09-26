@@ -1,0 +1,119 @@
+{
+  "playlists" : {
+    "href" : "https://api.spotify.com/v1/search?query=wcs&type=playlist&market=GB&offset=0&limit=3",
+    "items" : [ {
+      "collaborative" : false,
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-1/playlist/18vMX5iVfT5kxEOagRnJte"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-1/playlists/18vMX5iVfT5kxEOagRnJte",
+      "id" : "18vMX5iVfT5kxEOagRnJte",
+      "images" : [ {
+        "height" : 640,
+        "url" : "https://mosaic.scdn.co/640/36b3fa55bdfbb86cda34d561cd198e300d903fde24ab06ced713c1a56f34a6636bb4ef59e913816f346cb4943beb17def433cd2c9e9dc30e3a5f4d74cbdc612f71d17585b035f1dc68b39af1a99f7072",
+        "width" : 640
+      }, {
+        "height" : 300,
+        "url" : "https://mosaic.scdn.co/300/36b3fa55bdfbb86cda34d561cd198e300d903fde24ab06ced713c1a56f34a6636bb4ef59e913816f346cb4943beb17def433cd2c9e9dc30e3a5f4d74cbdc612f71d17585b035f1dc68b39af1a99f7072",
+        "width" : 300
+      }, {
+        "height" : 60,
+        "url" : "https://mosaic.scdn.co/60/36b3fa55bdfbb86cda34d561cd198e300d903fde24ab06ced713c1a56f34a6636bb4ef59e913816f346cb4943beb17def433cd2c9e9dc30e3a5f4d74cbdc612f71d17585b035f1dc68b39af1a99f7072",
+        "width" : 60
+      } ],
+      "name" : "WCS Playlist",
+      "owner" : {
+        "external_urls" : {
+          "spotify" : "http://open.spotify.com/user/some-user-1"
+        },
+        "href" : "https://api.spotify.com/v1/users/some-user-1",
+        "id" : "some-user-1",
+        "type" : "user",
+        "uri" : "spotify:user:some-user-1"
+      },
+      "public" : null,
+      "snapshot_id" : "/4Elq97BNwZ8caclzEFAmbzq62DIaGF0l2Wyj5nYCEIVLAn/sZLZCZkbNloI/Z41",
+      "tracks" : {
+        "href" : "https://api.spotify.com/v1/users/some-user-1/playlists/18vMX5iVfT5kxEOagRnJte/tracks",
+        "total" : 10
+      },
+      "type" : "playlist",
+      "uri" : "spotify:user:some-user-1:playlist:18vMX5iVfT5kxEOagRnJte"
+    }, {
+      "collaborative" : false,
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-2/playlist/5yYaaYjfZRhVElTxnBGIts"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-2/playlists/5yYaaYjfZRhVElTxnBGIts",
+      "id" : "5yYaaYjfZRhVElTxnBGIts",
+      "images" : [ {
+        "height" : 640,
+        "url" : "https://mosaic.scdn.co/640/fd3fdfd21dd6f48bbe3b30181d88248519f89e4cd947147770890e9b02a4b38ed885ad340cb7f97ce421d246934466f564a795333edc33cc66c8a9b8ee20afb582fc7c4d15b19f980d534f1425c54330",
+        "width" : 640
+      }, {
+        "height" : 300,
+        "url" : "https://mosaic.scdn.co/300/fd3fdfd21dd6f48bbe3b30181d88248519f89e4cd947147770890e9b02a4b38ed885ad340cb7f97ce421d246934466f564a795333edc33cc66c8a9b8ee20afb582fc7c4d15b19f980d534f1425c54330",
+        "width" : 300
+      }, {
+        "height" : 60,
+        "url" : "https://mosaic.scdn.co/60/fd3fdfd21dd6f48bbe3b30181d88248519f89e4cd947147770890e9b02a4b38ed885ad340cb7f97ce421d246934466f564a795333edc33cc66c8a9b8ee20afb582fc7c4d15b19f980d534f1425c54330",
+        "width" : 60
+      } ],
+      "name" : "Other WCS playlist",
+      "owner" : {
+        "display_name" : "Other User Display Name",
+        "external_urls" : {
+          "spotify" : "http://open.spotify.com/user/some-user-2"
+        },
+        "href" : "https://api.spotify.com/v1/users/some-user-2",
+        "id" : "some-user-2",
+        "type" : "user",
+        "uri" : "spotify:user:some-user-2"
+      },
+      "public" : null,
+      "snapshot_id" : "nKMV5f/PjOuzlJjYMPxecz/V+VnqVRY4wVeN4FYU5/OPzoAwdXISitU5RvxPW5Mc",
+      "tracks" : {
+        "href" : "https://api.spotify.com/v1/users/some-user-2/playlists/5yYaaYjfZRhVElTxnBGIts/tracks",
+        "total" : 11
+      },
+      "type" : "playlist",
+      "uri" : "spotify:user:some-user-2:playlist:5yYaaYjfZRhVElTxnBGIts"
+    }, {
+      "collaborative" : false,
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/some-user-3/playlist/0HLIzKQFTK7a0Xg2z6mRnv"
+      },
+      "href" : "https://api.spotify.com/v1/users/some-user-3/playlists/0HLIzKQFTK7a0Xg2z6mRnv",
+      "id" : "0HLIzKQFTK7a0Xg2z6mRnv",
+      "images" : [ {
+        "height" : null,
+        "url" : "https://pl.scdn.co/images/pl/default/f53fdc66c65a030176a46344703249cd46f70790",
+        "width" : null
+      } ],
+      "name" : "Third WCS playlist",
+      "owner" : {
+        "display_name" : "Third User Display Name",
+        "external_urls" : {
+          "spotify" : "http://open.spotify.com/user/some-user-3"
+        },
+        "href" : "https://api.spotify.com/v1/users/some-user-3",
+        "id" : "some-user-3",
+        "type" : "user",
+        "uri" : "spotify:user:some-user-3"
+      },
+      "public" : null,
+      "snapshot_id" : "8vzh3NpmfVFSKqsIHooHN9ulQDcjm57nLtIzgMGS/hQSAXFSorpPiucOab080VeA",
+      "tracks" : {
+        "href" : "https://api.spotify.com/v1/users/some-user-3/playlists/0HLIzKQFTK7a0Xg2z6mRnv/tracks",
+        "total" : 15
+      },
+      "type" : "playlist",
+      "uri" : "spotify:user:some-user-3:playlist:0HLIzKQFTK7a0Xg2z6mRnv"
+    } ],
+    "limit" : 3,
+    "next" : "https://api.spotify.com/v1/search?query=wcs&type=playlist&market=GB&offset=3&limit=3",
+    "offset" : 0,
+    "previous" : null,
+    "total" : 2298
+  }
+}
