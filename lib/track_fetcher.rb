@@ -6,6 +6,7 @@ require "yaml"
 require "csv"
 
 require_relative "chart_results"
+require_relative "model/user_track"
 require_relative "spotify/playlist_search"
 
 class TrackFetcher
@@ -119,15 +120,6 @@ private
 
       playlist_tracks
     }.flatten
-  end
-
-  class UserTrack
-    attr_reader :tracks, :added_by_user
-
-    def initialize
-      @tracks = []
-      @added_by_user = Hash.new { |h, k| h[k] = [] }
-    end
   end
 
   TrackId = Struct.new(:title, :artist_ids)
