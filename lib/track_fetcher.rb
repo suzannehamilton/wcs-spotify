@@ -6,10 +6,12 @@ require "yaml"
 require "csv"
 
 require_relative "chart_results"
+require_relative "spotify/playlist_search"
 
 class TrackFetcher
   def initialize
     @logger = Logging.logger[self]
+    @playlist_search = PlaylistSearch.new
   end
 
   def fetch_tracks
@@ -30,7 +32,7 @@ class TrackFetcher
     now = DateTime.now
 
     wcs_playlists = search_terms.map { |term|
-      search_playlists(term)
+      @playlist_search.search_playlists(term)
     }.flatten
 
     logger.info "Found #{wcs_playlists.length} playlists "
@@ -63,41 +65,6 @@ class TrackFetcher
 private
 
   attr_reader :logger
-
-  def search_playlists(search_term)
-    found_all_results = false
-    offset = 0
-    set_size = 50
-
-    results = []
-
-    while !found_all_results
-      logger.info "Searching for '#{search_term}' with offset #{offset}"
-
-      result_set = RSpotify::Playlist.search(search_term, limit: set_size, offset: offset)
-
-      filtered_results = result_set.select { |p| matches_term?(p, search_term) }
-
-      results.concat(result_set)
-
-      offset += set_size
-      found_all_results = result_set.length < set_size
-    end
-
-    results
-  end
-
-  # Spotify search results are too broad. For example, the search term "wcs"
-  # matches playlists named "wc" which are very unlikely to be relevant. So only
-  # include playlists whose name or description contain the exact search term.
-  def matches_term?(playlist, search_term)
-    term = search_term.downcase
-    playlist.name.downcase.include?(term) ||
-      (playlist.description && playlist.description.downcase.include?(term))
-    rescue RestClient::ResourceNotFound
-      logger.warn "Could not find playlist #{playlist.uri}"
-      false
-  end
 
   def get_playlist_tracks(playlist, offset)
     Retriable.retriable on: RestClient::RequestTimeout, tries: 3 do
