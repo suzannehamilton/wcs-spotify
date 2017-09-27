@@ -41,6 +41,5 @@ RSpec.describe UserTrack do
 
     # TODO: Test that UK+US version is selected
     # TODO: Test that UK is preferred over US
-    # TODO: Rename "track" to "instance"
   end
 end
