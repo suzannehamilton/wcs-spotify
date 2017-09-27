@@ -1,6 +1,8 @@
 class UserTrack
   attr_reader :added_by_user
 
+  TARGET_MARKET_PREFERENCES = [["GB", "US"], ["GB"], ["US"]].freeze
+
   def initialize
     @instances = []
     @added_by_user = Hash.new { |h, k| h[k] = [] }
@@ -15,22 +17,18 @@ class UserTrack
     valid_instances = @instances
       .uniq { |t| t.id }
       .reject { |t| t.id.nil? }
-    return nil if valid_instances.empty?
 
-    international_instances = valid_instances
-      .select { |t| t.available_markets.include?("GB") && t.available_markets.include?("US") }
-    return international_instances.max_by { |t| t.available_markets.count } if !international_instances.empty?
-
-    uk_instance = valid_instances
-      .select { |t| t.available_markets.include?("GB") }
-      .first
-    return uk_instance if uk_instance
-
-    us_instance = valid_instances
-      .select { |t| t.available_markets.include?("US") }
-      .first
-    return us_instance if us_instance
+    TARGET_MARKET_PREFERENCES.each do |markets|
+      available_instances = valid_instances
+        .select { |t| is_available_in_markets?(t, markets) }
+      return available_instances.max_by { |t| t.available_markets.count } unless available_instances.empty?
+    end
 
     valid_instances.max_by { |t| t.available_markets.count }
+  end
+
+private
+  def is_available_in_markets?(instance, markets)
+    markets.all? { |m| instance.available_markets.include?(m) }
   end
 end
