@@ -27,6 +27,20 @@ class UserTrack
     valid_instances.max_by { |t| t.available_markets.count }
   end
 
+  def adds_in_date_range(from, to)
+    added_by_user.values.select { |dates_added|
+      earliest = dates_added.compact.min
+      if earliest.nil?
+        # Tracks with a nil `date-added` value were added to a playlist
+        # before Spotify started storing date-added. So this is a valid
+        # value but we can't use this track to generate charts.
+        false
+      else
+        earliest >= from.to_time && earliest < to.to_time
+      end
+    }.length
+  end
+
 private
   def is_available_in_markets?(instance, markets)
     markets.all? { |m| instance.available_markets.include?(m) }

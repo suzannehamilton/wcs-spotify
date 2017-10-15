@@ -125,7 +125,7 @@ private
   TrackId = Struct.new(:title, :artist_ids)
 
   def combine_tracks_by_user(playlist_tracks)
-    playlist_tracks.each_with_object(Hash.new { |h, k| h[k] = UserTrack.new }) do |playlist_track, tracks|
+    playlist_tracks.each_with_object(Hash.new { |h, k| h[k] = UserTrack.new }) { |playlist_track, tracks|
       title = playlist_track.track.name
       artist_ids = playlist_track.track.artists.map { |artist| artist.id }
       track_id = TrackId.new(title, artist_ids)
@@ -135,34 +135,22 @@ private
         playlist_track.owner.id,
         playlist_track.added_at
       )
-    end
+    }.values
   end
 
   ChartTrack = Struct.new(:track, :adds)
 
   def tracks_added_in(user_tracks, from, to)
-    tracks_in_range = []
+    user_tracks.map { |user_track|
+      adds = user_track.adds_in_date_range(from, to)
+      canonical_track = user_track.canonical_track
 
-    user_tracks.values.each { |user_track|
-      adds = user_track.added_by_user.values.select { |dates_added|
-        earliest = dates_added.compact.min
-        if earliest.nil?
-          # Tracks with a nil `date-added` value were added to a playlist
-          # before Spotify started storing date-added. So this is a valid
-          # value but we can't use this track to generate charts.
-          false
-        else
-          earliest >= from.to_time && earliest < to.to_time
-        end
-      }.length
-
-      if adds > 0
-        canonical_track = user_track.canonical_track
-        tracks_in_range << ChartTrack.new(canonical_track, adds) unless canonical_track.nil?
+      if adds > 0 && canonical_track
+        ChartTrack.new(canonical_track, adds)
+      else
+        nil
       end
-    }
-
-    tracks_in_range
+    }.compact
   end
 
   def top_tracks(user_tracks, from, to)
