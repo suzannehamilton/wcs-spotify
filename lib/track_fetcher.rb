@@ -53,8 +53,7 @@ class TrackFetcher
 
     monthly_tracks = top_tracks(user_tracks, month_beginning, month_end)
 
-    previous_month_beginning = month_beginning << 1
-    rising_tracks = rising_tracks(user_tracks, month_beginning, month_end, previous_month_beginning)
+    rising_tracks = rising_tracks(user_tracks, month_beginning, month_end)
 
     year = now.year
     logger.info "Finding tracks for #{year}"
@@ -167,14 +166,24 @@ private
       .sort_by { |chart_track| [-chart_track.score, chart_track.track.id] }
   end
 
-  def rising_tracks(user_tracks, from, to, previous_period_start)
+  def rising_tracks(user_tracks, from, to)
     user_tracks.map { |user_track|
       current_adds = user_track.adds_in_date_range(from, to)
       canonical_track = user_track.canonical_track
 
       if current_adds > 0 && canonical_track
-        old_adds = user_track.adds_in_date_range(previous_period_start, from)
-        score = rising_track_score(old_adds, current_adds)
+        previous_max = 0
+        month_ending = from
+        month_beginning = from << 1
+        (3 * 12).times do
+          old_adds = user_track.adds_in_date_range(month_beginning, month_ending)
+          previous_max = old_adds if old_adds > previous_max
+
+          month_ending = month_beginning
+          month_beginning = month_beginning << 1
+        end
+
+        score = rising_track_score(previous_max, current_adds)
         ChartTrack.new(canonical_track, score)
       else
         nil
