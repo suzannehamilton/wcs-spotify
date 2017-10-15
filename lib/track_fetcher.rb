@@ -49,27 +49,19 @@ class TrackFetcher
     month_end = DateTime.new(now.year, now.month, 1, 0, 0, 0, 0)
     month_beginning = month_end << 1
 
-    logger.info "Finding tracks for #{month_beginning.strftime("%Y_%B")}"
+    rising_track_charts = {}
 
-    monthly_tracks = top_tracks(user_tracks, month_beginning, month_end)
+    24.times do
+      logger.info "Finding rising tracks for #{month_beginning.strftime("%Y_%B")}"
 
-    previous_month_beginning = month_beginning << 1
-    rising_tracks = rising_tracks(user_tracks, month_beginning, month_end, previous_month_beginning)
+      previous_month_beginning = month_beginning << 1
+      rising_track_charts[month_beginning] = rising_tracks(user_tracks, month_beginning, month_end, previous_month_beginning)
 
-    year = now.year
-    logger.info "Finding tracks for #{year}"
-    year_end = DateTime.new(year + 1, 1, 1, 0, 0, 0, 0)
-    year_beginning = DateTime.new(year, 1, 1, 0, 0, 0, 0)
+      month_end = month_beginning
+      month_beginning = previous_month_beginning
+    end
 
-    yearly_tracks = top_tracks(user_tracks, year_beginning, year_end)
-
-    ChartResults.new(
-      yearly_tracks,
-      monthly_tracks,
-      rising_tracks,
-      year_beginning,
-      month_beginning,
-      now)
+    ChartResults.new(rising_track_charts, now)
   end
 
 private
@@ -147,7 +139,7 @@ private
     }.values
   end
 
-  ChartTrack = Struct.new(:track, :score)
+  ChartTrack = Struct.new(:track, :score, :previous_adds, :current_adds)
 
   def tracks_added_in(user_tracks, from, to)
     user_tracks.map { |user_track|
@@ -175,7 +167,7 @@ private
       if current_adds > 0 && canonical_track
         old_adds = user_track.adds_in_date_range(previous_period_start, from)
         score = rising_track_score(old_adds, current_adds)
-        ChartTrack.new(canonical_track, score)
+        ChartTrack.new(canonical_track, score, old_adds, current_adds)
       else
         nil
       end
