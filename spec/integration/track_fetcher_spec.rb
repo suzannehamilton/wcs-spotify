@@ -100,6 +100,15 @@ RSpec.describe TrackFetcher do
       expect(yearly_tracks[0].track.id).to eq("0dA2Mk56wEzDgegdC6R17g")
     end
 
+    it "combines tracks into a monthly rising tracks chart" do
+      results = @track_fetcher.fetch_tracks
+
+      rising_tracks = results.rising_tracks
+      expect(rising_tracks.count).to eq(15)
+      expect(rising_tracks[0].score).to be > 0
+      expect(rising_tracks[0].track.id).to eq("0dA2Mk56wEzDgegdC6R17g")
+    end
+
     it "combines tracks added multiple times by the same user" do
       results = @track_fetcher.fetch_tracks
 

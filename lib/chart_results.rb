@@ -1,9 +1,21 @@
 class ChartResults
-  attr_reader :yearly_tracks, :monthly_tracks, :year_beginning, :month_beginning, :timestamp
+  attr_reader :yearly_tracks,
+    :monthly_tracks,
+    :rising_tracks,
+    :year_beginning,
+    :month_beginning,
+    :timestamp
 
-  def initialize(yearly_tracks, monthly_tracks, year_beginning, month_beginning, timestamp)
+  def initialize(
+    yearly_tracks,
+    monthly_tracks,
+    rising_tracks,
+    year_beginning,
+    month_beginning,
+    timestamp)
     @yearly_tracks = yearly_tracks
     @monthly_tracks = monthly_tracks
+    @rising_tracks = rising_tracks
     @year_beginning = year_beginning
     @month_beginning = month_beginning
     @timestamp = timestamp

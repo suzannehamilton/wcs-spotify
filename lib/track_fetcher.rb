@@ -53,6 +53,9 @@ class TrackFetcher
 
     monthly_tracks = top_tracks(user_tracks, month_beginning, month_end)
 
+    previous_month_beginning = month_beginning << 1
+    rising_tracks = rising_tracks(user_tracks, month_beginning, month_end, previous_month_beginning)
+
     year = now.year
     logger.info "Finding tracks for #{year}"
     year_end = DateTime.new(year + 1, 1, 1, 0, 0, 0, 0)
@@ -60,7 +63,13 @@ class TrackFetcher
 
     yearly_tracks = top_tracks(user_tracks, year_beginning, year_end)
 
-    ChartResults.new(yearly_tracks, monthly_tracks, year_beginning, month_beginning, now)
+    ChartResults.new(
+      yearly_tracks,
+      monthly_tracks,
+      rising_tracks,
+      year_beginning,
+      month_beginning,
+      now)
   end
 
 private
@@ -156,5 +165,28 @@ private
   def top_tracks(user_tracks, from, to)
     tracks_added_in(user_tracks, from, to)
       .sort_by { |chart_track| [-chart_track.adds, chart_track.track.id] }
+  end
+
+  # TODO: Combine with ChartTrack?
+  RisingTrack = Struct.new(:track, :score)
+
+  def rising_tracks(user_tracks, from, to, previous_period_start)
+    user_tracks.map { |user_track|
+      current_adds = user_track.adds_in_date_range(from, to)
+      canonical_track = user_track.canonical_track
+
+      if current_adds > 0 && canonical_track
+        old_adds = user_track.adds_in_date_range(previous_period_start, from)
+        score = rising_track_score(old_adds, current_adds)
+        RisingTrack.new(canonical_track, score)
+      else
+        nil
+      end
+    }.compact
+      .sort_by { |rising_track| [-rising_track.score, rising_track.track.id] }
+  end
+
+  def rising_track_score(old_adds, current_adds)
+    (current_adds - old_adds) * Math.sqrt(current_adds)
   end
 end
