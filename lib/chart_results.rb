@@ -29,16 +29,20 @@ class ChartResults
     save_tracks(monthly_tracks, "last_month_#{month_beginning.strftime('%Y_%B')}")
   end
 
+  def save_rising_tracks_chart
+    save_tracks(rising_tracks, "rising_tracks_#{month_beginning.strftime('%Y_%B')}")
+  end
+
 private
 
   def save_tracks(tracks, name)
     file_name = "results/#{name}_#{timestamp.strftime('%F_%T')}.csv"
     CSV.open(file_name, "wb") do |csv|
-      csv << ["adds", "track_id", "artists", "name"]
+      csv << ["score", "track_id", "artists", "name"]
       tracks.each do |chart_track|
         track = chart_track.track
         artist_name = track.artists.map { |a| a.name }.join(", ")
-        csv << [chart_track.adds, track.id, artist_name, track.name]
+        csv << [chart_track.score, track.id, artist_name, track.name]
       end
     end
   end

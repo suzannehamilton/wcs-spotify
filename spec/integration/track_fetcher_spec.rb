@@ -87,7 +87,7 @@ RSpec.describe TrackFetcher do
 
       monthly_tracks = results.monthly_tracks
       expect(monthly_tracks.count).to eq(15)
-      expect(monthly_tracks[0].adds).to eq(3)
+      expect(monthly_tracks[0].score).to eq(3)
       expect(monthly_tracks[0].track.id).to eq("0dA2Mk56wEzDgegdC6R17g")
     end
 
@@ -96,7 +96,7 @@ RSpec.describe TrackFetcher do
 
       yearly_tracks = results.yearly_tracks
       expect(yearly_tracks.count).to eq(20)
-      expect(yearly_tracks[0].adds).to eq(3)
+      expect(yearly_tracks[0].score).to eq(3)
       expect(yearly_tracks[0].track.id).to eq("0dA2Mk56wEzDgegdC6R17g")
     end
 
@@ -116,7 +116,7 @@ RSpec.describe TrackFetcher do
 
       matching_tracks = yearly_tracks.select { |t| t.track.id == "70fdF045x3n1ahv7MG6Z4H" }
       expect(matching_tracks.count).to eq(1)
-      expect(matching_tracks.first.adds).to eq(1)
+      expect(matching_tracks.first.score).to eq(1)
     end
 
     it "combines tracks with same title and artist but different IDs" do
@@ -126,7 +126,7 @@ RSpec.describe TrackFetcher do
 
       matching_tracks = yearly_tracks.select { |t| t.track.name == "Gooey" }
       expect(matching_tracks.count).to eq(1)
-      expect(matching_tracks.first.adds).to eq(2)
+      expect(matching_tracks.first.score).to eq(2)
     end
   end
   # TODO: Test playlist and track scrolling. Possibly in unit tests.

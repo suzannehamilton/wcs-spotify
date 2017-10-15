@@ -147,7 +147,7 @@ private
     }.values
   end
 
-  ChartTrack = Struct.new(:track, :adds)
+  ChartTrack = Struct.new(:track, :score)
 
   def tracks_added_in(user_tracks, from, to)
     user_tracks.map { |user_track|
@@ -164,11 +164,8 @@ private
 
   def top_tracks(user_tracks, from, to)
     tracks_added_in(user_tracks, from, to)
-      .sort_by { |chart_track| [-chart_track.adds, chart_track.track.id] }
+      .sort_by { |chart_track| [-chart_track.score, chart_track.track.id] }
   end
-
-  # TODO: Combine with ChartTrack?
-  RisingTrack = Struct.new(:track, :score)
 
   def rising_tracks(user_tracks, from, to, previous_period_start)
     user_tracks.map { |user_track|
@@ -178,7 +175,7 @@ private
       if current_adds > 0 && canonical_track
         old_adds = user_track.adds_in_date_range(previous_period_start, from)
         score = rising_track_score(old_adds, current_adds)
-        RisingTrack.new(canonical_track, score)
+        ChartTrack.new(canonical_track, score)
       else
         nil
       end

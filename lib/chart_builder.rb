@@ -16,6 +16,7 @@ class ChartBuilder < Thor
     chart_results = TrackFetcher.new.fetch_tracks
     chart_results.save_year_chart
     chart_results.save_month_chart
+    chart_results.save_rising_tracks_chart
   end
 
   desc "create_playlist", "Create a Spotify playlist for a chart"
