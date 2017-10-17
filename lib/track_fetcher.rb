@@ -165,18 +165,25 @@ private
 
       if current_adds > 0 && canonical_track
         previous_max = 0
-        month_ending = from
-        month_beginning = from << 1
-        (3 * 12).times do
-          old_adds = user_track.adds_in_date_range(month_beginning, month_ending)
-          previous_max = old_adds if old_adds > previous_max
-
+        month_ending = to
+        month_beginning = from
+        (3).times do
           month_ending = month_beginning
           month_beginning = month_beginning << 1
+
+          old_adds = user_track.adds_in_date_range(month_beginning, month_ending)
+          previous_max = old_adds if old_adds > previous_max
         end
 
-        score = rising_track_score(previous_max, current_adds)
-        ChartTrack.new(canonical_track, score, previous_max, current_adds)
+        early_date = DateTime.new(2008, 1, 1)
+        earlier_adds = user_track.adds_in_date_range(early_date, month_beginning)
+
+        if earlier_adds == 0
+          score = rising_track_score(previous_max, current_adds)
+          ChartTrack.new(canonical_track, score, previous_max, current_adds)
+        else
+          nil
+        end
       else
         nil
       end

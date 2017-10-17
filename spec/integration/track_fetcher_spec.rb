@@ -104,7 +104,7 @@ RSpec.describe TrackFetcher do
       results = @track_fetcher.fetch_tracks
 
       rising_tracks = results.rising_tracks
-      expect(rising_tracks.count).to eq(15)
+      expect(rising_tracks.count).to eq(11)
       expect(rising_tracks[0].score).to be > 0
       expect(rising_tracks[0].track.id).to eq("0dA2Mk56wEzDgegdC6R17g")
     end
