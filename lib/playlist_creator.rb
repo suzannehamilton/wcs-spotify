@@ -6,7 +6,7 @@ require "rspotify"
 require "yaml"
 
 class PlaylistCreator
-  ChartTrack = Struct.new(:id, :adds, :title, :artist_names)
+  ChartTrack = Struct.new(:id, :score, :title, :artist_names)
 
   def initialize
     @logger = Logging.logger[self]
@@ -47,14 +47,14 @@ class PlaylistCreator
 
     chart_tracks = []
 
-    CSV.foreach("results/year_so_far_2017_2017-06-01_20:11:03.csv", headers: :first_row) do |row|
-      chart_tracks << ChartTrack.new(row["track_id"], row["adds"], row["name"], row["artists"])
+    CSV.foreach("results/rising_tracks_2017_October_2017-11-03_22\:22\:38.csv", headers: :first_row) do |row|
+      chart_tracks << ChartTrack.new(row["track_id"], row["score"], row["name"], row["artists"])
     end
 
     chart_size = 40
 
     top_tracks = chart_tracks.take(chart_size)
-    tracks_tied_for_last_place = chart_tracks[chart_size..-1].select { |t| t.adds == top_tracks.last.adds }
+    tracks_tied_for_last_place = chart_tracks[chart_size..-1].select { |t| t.score == top_tracks.last.score }
     chart = top_tracks + tracks_tied_for_last_place
 
     spotify_tracks = RSpotify::Track.find(chart.map { |t| t.id })
