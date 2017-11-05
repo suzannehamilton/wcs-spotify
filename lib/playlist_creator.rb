@@ -57,7 +57,8 @@ class PlaylistCreator
     tracks_tied_for_last_place = chart_tracks[chart_size..-1].select { |t| t.score == top_tracks.last.score }
     chart = top_tracks + tracks_tied_for_last_place
 
-    spotify_tracks = RSpotify::Track.find(chart.map { |t| t.id })
+    track_ids = chart.map { |t| t.id }
+    spotify_tracks = RSpotify::Track.find(track_ids, market: "GB")
 
     playlist = user.create_playlist!("Westie Charts: July 2017", public: false)
 
@@ -68,7 +69,7 @@ class PlaylistCreator
     chart_playlist.change_details!(description: "Top West Coast Swing tracks for July 2017")
     chart_playlist.add_tracks!(spotify_tracks)
 
-    logger.info "Created playlist '#{playlist.id}'"
+    logger.info "Created playlist '#{playlist.uri}' with #{spotify_tracks.count} tracks"
   end
 
 private
