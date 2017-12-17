@@ -2,6 +2,7 @@ require "logging"
 require "thor"
 
 require_relative "playlist_creator"
+require_relative "track_downloader"
 require_relative "track_fetcher"
 
 class ChartBuilder < Thor
@@ -13,7 +14,18 @@ class ChartBuilder < Thor
 
   desc "fetch_tracks", "Find recent popular tracks"
   def fetch_tracks
-    chart_results = TrackFetcher.new.fetch_tracks
+    # TODO: Tidy filename
+    output_path = "results/tracks/tracks_#{DateTime.now}.yaml"
+
+    track_downloader = TrackDownloader.new
+    track_downloader.fetch_tracks(output_path)
+
+    puts "Tracks saved to #{output_path}"
+  end
+
+  desc "build_chart TRACK_DATA", "Create a chart from track data"
+  def build_chart(track_data)
+    chart_results = TrackFetcher.new.fetch_tracks(track_data)
     chart_results.save_year_chart
     chart_results.save_month_chart
     chart_results.save_rising_tracks_chart

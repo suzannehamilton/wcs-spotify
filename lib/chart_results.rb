@@ -41,8 +41,7 @@ private
       csv << ["score", "track_id", "artists", "name"]
       tracks.each do |chart_track|
         track = chart_track.track
-        artist_name = track.artists.map { |a| a.name }.join(", ")
-        csv << [chart_track.score, track.id, artist_name, track.name]
+        csv << [chart_track.score, track.id, track.artists, track.name]
       end
     end
   end
