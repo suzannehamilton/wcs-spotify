@@ -63,6 +63,9 @@ private
       rescue URI::InvalidURIError
         logger.warn "Playlist '#{playlist.uri}' has invalid URI"
         []
+      rescue NoMethodError => e
+        logger.warn "Playlist '#{playlist.uri}' has track total #{playlist.total} and error '#{e}'"
+        []
       end
     end
   end
@@ -76,6 +79,9 @@ private
         []
       rescue URI::InvalidURIError
         logger.warn "Playlist '#{playlist.uri}' has invalid URI"
+        []
+      rescue NoMethodError => e
+        logger.warn "Playlist '#{playlist.uri}' has track total #{playlist.total} and error '#{e}'"
         []
       end
     end
