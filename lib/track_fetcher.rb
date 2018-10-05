@@ -111,7 +111,13 @@ private
   end
 end
 
-CanonicalTrack = Struct.new(:id, :name, :artists)
+CanonicalTrack = Struct.new(
+  :id,
+  :name,
+  :artists,
+  :release_date,
+  :release_date_precision
+)
 
 # TODO: Test
 # TODO: Rename
@@ -120,12 +126,37 @@ class DeserializedTrack
 
   def initialize(hash)
     @first_added_dates = hash[:first_added].map { |d| Date.parse(d) }
-    @canonical_track = CanonicalTrack.new(hash[:id], hash[:name], hash[:artists])
+    @canonical_track = CanonicalTrack.new(
+      hash[:id],
+      hash[:name],
+      hash[:artists],
+      hash[:release_date],
+      hash[:release_date_precision]
+    )
+  end
+
+  def release_date
+    @canonical_track.release_date
   end
 
   def adds_in_date_range(from, to)
     @first_added_dates.select { |date|
       date >= from.to_date && date < to.to_date
     }.length
+  end
+
+  def total_adds
+    @first_added_dates.count
+  end
+
+  def serialize
+    {
+      id: @canonical_track.id,
+      name: @canonical_track.name,
+      artists: @canonical_track.artists,
+      release_date: @canonical_track.release_date,
+      release_date_precision: @canonical_track.release_date_precision,
+      first_added: @first_added_dates.map { |d| d.strftime("%Y-%m-%d") },
+    }
   end
 end

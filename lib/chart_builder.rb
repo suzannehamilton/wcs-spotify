@@ -4,6 +4,7 @@ require "thor"
 require_relative "playlist_creator"
 require_relative "track_downloader"
 require_relative "track_fetcher"
+require_relative "track_filterer"
 
 class ChartBuilder < Thor
   Logging.logger.root.level = :info
@@ -29,6 +30,12 @@ class ChartBuilder < Thor
     chart_results.save_year_chart
     chart_results.save_month_chart
     chart_results.save_rising_tracks_chart
+  end
+
+  desc "filter_old_tracks TRACK_DATA MAX_YEAR", "Filter tracks up to the given year"
+  def filter_old_tracks(track_data, max_year)
+    track_filterer = TrackFilterer.new
+    track_filterer.filter_to_year(track_data, max_year.to_i)
   end
 
   desc "create_playlist", "Create a Spotify playlist for a chart"
