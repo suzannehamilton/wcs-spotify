@@ -21,6 +21,8 @@ class TrackWithDates
       id: @canonical_track.id,
       name: @canonical_track.name,
       artists: @canonical_track.artists.map{ |a| a.name }.join(", "),
+      release_date: @canonical_track.album.release_date,
+      release_date_precision: @canonical_track.album.release_date_precision,
       first_added: @first_added_dates.map { |d| d.strftime("%Y-%m-%d") },
     }
   end
