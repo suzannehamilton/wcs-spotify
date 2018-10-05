@@ -58,7 +58,7 @@ class PlaylistCreator
     chart = top_tracks + tracks_tied_for_last_place
 
     track_ids = chart.map { |t| t.id }
-    spotify_tracks = RSpotify::Track.find(track_ids, market: "GB")
+    spotify_tracks = RSpotify::Track.find(track_ids)
 
     playlist = user.create_playlist!("Westie Charts: July 2017", public: false)
 
