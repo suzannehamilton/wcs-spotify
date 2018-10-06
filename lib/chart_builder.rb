@@ -32,6 +32,12 @@ class ChartBuilder < Thor
     chart_results.save_rising_tracks_chart
   end
 
+  desc "build_complete_chart TRACK_DATA", "Create chart with all tracks"
+  def build_complete_chart(track_data)
+    chart_results = TrackFetcher.new.fetch_tracks(track_data)
+    chart_results.save_whole_chart
+  end
+
   desc "filter_old_tracks TRACK_DATA MAX_YEAR", "Filter tracks up to the given year"
   def filter_old_tracks(track_data, max_year)
     track_filterer = TrackFilterer.new

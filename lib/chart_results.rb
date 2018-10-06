@@ -2,6 +2,7 @@ class ChartResults
   attr_reader :yearly_tracks,
     :monthly_tracks,
     :rising_tracks,
+    :all_tracks,
     :year_beginning,
     :month_beginning,
     :timestamp
@@ -10,12 +11,14 @@ class ChartResults
     yearly_tracks,
     monthly_tracks,
     rising_tracks,
+    all_tracks,
     year_beginning,
     month_beginning,
     timestamp)
     @yearly_tracks = yearly_tracks
     @monthly_tracks = monthly_tracks
     @rising_tracks = rising_tracks
+    @all_tracks = all_tracks
     @year_beginning = year_beginning
     @month_beginning = month_beginning
     @timestamp = timestamp
@@ -31,6 +34,10 @@ class ChartResults
 
   def save_rising_tracks_chart
     save_tracks(rising_tracks, "rising_tracks_#{month_beginning.strftime('%Y_%B')}")
+  end
+
+  def save_whole_chart
+    save_tracks(all_tracks, "all_tracks")
   end
 
 private

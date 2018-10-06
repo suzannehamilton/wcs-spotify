@@ -51,23 +51,31 @@ class PlaylistCreator
       chart_tracks << ChartTrack.new(row["track_id"], row["score"], row["name"], row["artists"])
     end
 
-    chart_size = 40
+    chart_size = chart_tracks.size
 
     top_tracks = chart_tracks.take(chart_size)
     tracks_tied_for_last_place = chart_tracks[chart_size..-1].select { |t| t.score == top_tracks.last.score }
     chart = top_tracks + tracks_tied_for_last_place
 
     track_ids = chart.map { |t| t.id }
-    spotify_tracks = RSpotify::Track.find(track_ids)
+    puts "Getting #{track_ids.count} tracks"
 
-    playlist = user.create_playlist!("Westie Charts: July 2017", public: false)
+    spotify_tracks = track_ids
+      .each_slice(50)
+      .map { |batch| RSpotify::Track.find(batch) }
+      .flatten
+
+    playlist = user.create_playlist!("Fast tracks", public: false)
 
     # Search for the playlist again. This is a workaround for a possible bug in
     # the Spotify API: when a playlist is created, the playlist's owner is not
     # populated correctly.
     chart_playlist = RSpotify::Playlist.find('westiecharts', playlist.id)
-    chart_playlist.change_details!(description: "Top West Coast Swing tracks for July 2017")
-    chart_playlist.add_tracks!(spotify_tracks)
+    chart_playlist.change_details!(description: "Tracks from up to 1990 with at least 10 adds")
+
+    spotify_tracks.each_slice(50) do |batch|
+      chart_playlist.add_tracks!(batch)
+    end
 
     logger.info "Created playlist '#{playlist.uri}' with #{spotify_tracks.count} tracks"
   end
