@@ -31,6 +31,13 @@ class ChartBuilder < Thor
     chart_results.save_rising_tracks_chart
   end
 
+# TODO: Refactor so we don't have to build all charts and just save some of them
+  desc "build_complete_chart TRACK_DATA", "Create chart with all tracks"
+  def build_complete_chart(track_data)
+    chart_results = TrackFetcher.new.fetch_tracks(track_data)
+    chart_results.save_whole_chart
+  end
+
   desc "create_playlist", "Create a Spotify playlist for a chart"
   def create_playlist
     # TODO: Pass config into PlaylistCreator

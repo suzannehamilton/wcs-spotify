@@ -40,10 +40,13 @@ class TrackFetcher
 
     yearly_tracks = top_tracks(first_added_tracks, year_beginning, year_end)
 
+    all_tracks = top_tracks(first_added_tracks, DateTime.new(1900), DateTime.now)
+
     ChartResults.new(
       yearly_tracks,
       monthly_tracks,
       rising_tracks,
+      all_tracks,
       year_beginning,
       month_beginning,
       now)
