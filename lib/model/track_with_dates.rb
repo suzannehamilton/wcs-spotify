@@ -3,6 +3,7 @@ class TrackWithDates
 
   def initialize(user_track)
     @canonical_track = user_track.canonical_track
+    @first_release = user_track.first_release
 
     @first_added_dates = user_track.added_by_user.map { |user, dates_added|
       dates_added.compact.min
@@ -21,8 +22,8 @@ class TrackWithDates
       id: @canonical_track.id,
       name: @canonical_track.name,
       artists: @canonical_track.artists.map{ |a| a.name }.join(", "),
-      release_date: @canonical_track.album.release_date,
-      release_date_precision: @canonical_track.album.release_date_precision,
+      release_date: @first_release.album.release_date,
+      release_date_precision: @first_release.album.release_date_precision,
       first_added: @first_added_dates.map { |d| d.strftime("%Y-%m-%d") },
     }
   end
