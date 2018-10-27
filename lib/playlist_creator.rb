@@ -71,7 +71,7 @@ class PlaylistCreator
     # the Spotify API: when a playlist is created, the playlist's owner is not
     # populated correctly.
     chart_playlist = RSpotify::Playlist.find('westiecharts', playlist.id)
-    chart_playlist.change_details!(description: "Tracks from up to 1990 with at least 10 adds")
+    chart_playlist.change_details!(description: "Tracks from up to 1990 with at least 5 adds")
 
     spotify_tracks.each_slice(50) do |batch|
       chart_playlist.add_tracks!(batch)

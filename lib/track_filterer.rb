@@ -14,7 +14,7 @@ class TrackFilterer
 
     puts "Narrowed down to #{old_tracks.count} old tracks"
 
-    popular_tracks = old_tracks.select { |track| track.total_adds > 10 }
+    popular_tracks = old_tracks.select { |track| track.total_adds > 5 }
     puts "Narrowed down to #{popular_tracks.count} popular tracks"
 
     output_path = "results/tracks/old_tracks_#{DateTime.now.strftime('%F_%T')}.yml"
