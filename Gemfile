@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'logging', '~> 2.2.2'
 gem 'retriable', '~> 3.0.2'
-gem 'rspotify', git: 'https://github.com/suzannehamilton/rspotify.git', branch: 'track-market'
+gem 'rspotify', '~> 2.8.0'
 gem 'thor', '~> 0.19.4'
 
 # Testing
