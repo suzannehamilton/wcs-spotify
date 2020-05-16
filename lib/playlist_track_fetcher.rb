@@ -26,7 +26,16 @@ class PlaylistTrackFetcher
     logger.info "Found #{wcs_playlists.length} playlists"
 
     CSV.open(output_path, "wb") do |csv|
-      csv << ["track_id", "added_at"]
+      csv << [
+        "track_id",
+        "added_at",
+        "full_name",
+        "artist_ids",
+        "artist_names",
+        "release_date",
+        "release_date_precision",
+        "available_markets",
+      ]
 
       wcs_playlists.each do |playlist|
         logger.info playlist.name
@@ -40,7 +49,24 @@ class PlaylistTrackFetcher
 
           track_set.each do |track|
             added_at = tracks_added_at[track.id]
-            csv << [track.id, added_at]
+
+            artist_ids = track.artists.map { |artist| artist.id }.join(",")
+            artist_names = track.artists.map { |artist| artist.name }.join(",")
+
+            release_date = track.album.release_date
+            release_date_precision = track.album.release_date_precision
+            markets = track.album.available_markets.join(",")
+
+            csv << [
+              track.id,
+              added_at,
+              track.name,
+              artist_ids,
+              artist_names,
+              release_date,
+              release_date_precision,
+              markets,
+            ]
           end
         end
       end
