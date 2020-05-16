@@ -6,12 +6,12 @@ class PlaylistTrackFetcher
 
   def fetch_tracks(output_path)
     search_terms = [
-      # "wcs",
+      "wcs",
       "westcoastswing",
-      # "west coastswing",
-      # "westcoast swing",
-      # "west coast swing",
-      # "westie",
+      "west coastswing",
+      "westcoast swing",
+      "west coast swing",
+      "westie",
     ]
 
     # TODO: Reference file relative to this one?
@@ -19,6 +19,7 @@ class PlaylistTrackFetcher
 
     RSpotify.authenticate(config["spotify_api"]["client_id"], config["spotify_api"]["client_secret"])
 
+    # TODO: Deduplicate playlist IDs
     wcs_playlists = search_terms.map { |term|
       @playlist_search.search_playlists(term)
     }.flatten
