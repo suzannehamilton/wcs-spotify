@@ -4,6 +4,7 @@ require "thor"
 require_relative "playlist_creator"
 require_relative "track_downloader"
 require_relative "track_fetcher"
+require_relative "canonical_track_finder"
 require_relative "playlist_track_fetcher"
 
 class ChartBuilder < Thor
@@ -19,6 +20,18 @@ class ChartBuilder < Thor
 
     playlist_track_fetcher = PlaylistTrackFetcher.new
     playlist_track_fetcher.fetch_tracks(output_path)
+
+    puts "Output saved to #{output_path}"
+  end
+
+  desc "canonical PLAYLIST_DATA_FILE", "Find canonical tracks in a set of listening data"
+  def canonical(playlist_data)
+    output_path = "results/canonical_tracks/canonical_tracks_#{DateTime.now}.csv"
+
+    canonical_track_finder = CanonicalTrackFinder.new
+    canonical_track_finder.find_tracks(playlist_data, output_path)
+
+    puts "Output saved to #{output_path}"
   end
 
   desc "fetch_tracks", "Find recent popular tracks"
