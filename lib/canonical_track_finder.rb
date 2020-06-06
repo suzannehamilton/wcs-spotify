@@ -3,9 +3,12 @@ class CanonicalTrackFinder
     playlist_data = CSV.read(playlist_data_file, headers: true)
     puts "Found #{playlist_data.length} lines"
 
+    unique_tracks = playlist_data.uniq { |track| track["track_id"] }
+    puts "Found #{unique_tracks.length} unique tracks"
+
     grouped_tracks = Hash.new { |h, k| h[k] = [] }
 
-    playlist_data.each do |track|
+    unique_tracks.each do |track|
       key = {
         # TODO: De-duplicate tracks with similar titles
         name: track["full_name"],
