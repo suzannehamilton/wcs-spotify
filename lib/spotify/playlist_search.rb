@@ -13,13 +13,19 @@ class PlaylistSearch
     while !found_all_results
       @logger.info "Searching for '#{search_term}' with offset #{offset}"
 
-      result_set = RSpotify::Playlist.search(search_term, limit: batch_size, offset: offset)
+      result_set = begin
+        RSpotify::Playlist.search(search_term, limit: batch_size, offset: offset)
+      rescue RestClient::ResourceNotFound
+        @logger.warn "Count not get search results for term '#{search_term}' with offset #{offset} and batch size #{batch_size}"
+        []
+      end
 
       filtered_results = result_set.select { |p| matches_term?(p, search_term) }
 
       results.concat(filtered_results)
 
       offset += batch_size
+
       found_all_results = result_set.length < batch_size
     end
 
