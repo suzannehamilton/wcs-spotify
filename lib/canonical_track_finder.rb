@@ -26,7 +26,11 @@ class CanonicalTrackFinder
       earliest_track = tracks.min_by { |track| release_date(track) }
 
       if earliest_track["release_date_precision"] == "year" || earliest_track["release_date_precision"] == "month"
-        puts "Earliest track of '#{key[:name]}' is '#{earliest_track['track_id']}' released on #{earliest_track['release_date']}"
+        release = release_date(earliest_track)
+        if release > Date.new(2017, 1, 1)
+          puts "Earliest track of '#{key[:name]}' is '#{earliest_track['track_id']}' released on #{earliest_track['release_date']}"
+          puts tracks.map { |t| t["release_date"] }
+        end
       end
     end
   end
