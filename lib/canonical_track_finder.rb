@@ -19,5 +19,12 @@ class CanonicalTrackFinder
     end
 
     puts "Found #{grouped_tracks.size} de-duplicated tracks"
+
+    grouped_tracks.take(10).each do |key, tracks|
+      if tracks.size > 1
+        puts "Key: #{key}"
+        puts tracks.map { |t| t["full_name"] }
+      end
+    end
   end
 end
