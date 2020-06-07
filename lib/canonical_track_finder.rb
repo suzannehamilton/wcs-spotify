@@ -1,3 +1,5 @@
+require "date"
+
 class CanonicalTrackFinder
   def find_tracks(playlist_data_file, output_file)
     playlist_data = CSV.read(playlist_data_file, headers: true)
@@ -20,9 +22,24 @@ class CanonicalTrackFinder
 
     puts "Found #{grouped_tracks.size} de-duplicated tracks"
 
-    max_key, max_tracks = grouped_tracks.max_by { |key, tracks| tracks.size }
+    grouped_tracks.take(10).each do |key, tracks|
+      earliest_track = tracks.min_by { |track| release_date(track) }
 
-    puts max_key
-    puts max_tracks.size
+      puts "Earliest track of '#{key[:name]}' is '#{earliest_track['track_id']}' released on #{earliest_track['release_date']}"
+    end
+  end
+
+private
+
+  def release_date(track)
+    rough_release_date = track["release_date"]
+
+    if track["release_date_precision"] == "year"
+      Date.strptime(rough_release_date, "%Y").next_year.prev_day
+    elsif track["release_date_precision"] == "month"
+      Date.strptime(rough_release_date, "%Y-%m").next_month.prev_day
+    else
+      Date.parse(rough_release_date)
+    end
   end
 end
