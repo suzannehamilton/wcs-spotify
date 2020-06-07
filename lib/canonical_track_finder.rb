@@ -23,7 +23,7 @@ class CanonicalTrackFinder
     grouped_tracks.take(10).each do |key, tracks|
       if tracks.size > 1
         puts "Key: #{key}"
-        puts tracks.map { |t| t["full_name"] }
+        puts tracks.map { |t| "'#{t['track_id']}' released on #{t['release_date']} to markets '#{t['available_markets']}'" }
       end
     end
   end
