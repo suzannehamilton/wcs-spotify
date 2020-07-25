@@ -26,7 +26,7 @@ class ChartBuilder < Thor
 
   desc "canonical PLAYLIST_DATA_FILE", "Find canonical tracks in a set of listening data"
   def canonical(playlist_data)
-    output_path = "results/canonical_tracks/canonical_tracks_#{DateTime.now}.csv"
+    output_path = "results/canonical/canonical_tracks_#{DateTime.now}.csv"
 
     canonical_track_finder = CanonicalTrackFinder.new
     canonical_track_finder.find_tracks(playlist_data, output_path)
