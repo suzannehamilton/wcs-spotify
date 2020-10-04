@@ -33,6 +33,9 @@ class ChartExtractor
       end
     end
 
-    puts chart.sort_by {|k, v| -v}.take(20)
+    chart.sort_by {|k, v| -v}.take(40).each do |track_id, count|
+      track = canonical_tracks[track_id]
+      puts "#{count} #{track["full_name"]} - #{track["artist_names"]}"
+    end
   end
 end
