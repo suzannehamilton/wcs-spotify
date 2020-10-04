@@ -21,6 +21,9 @@ class ChartExtractor
 
     chart = Hash.new(0)
 
+    nil_track_ids = playlist_data.filter { |track| track["track_id"].nil? }
+    puts "Found #{nil_track_ids.length} tracks with nil ID"
+
     playlist_data.each do |add_event|
       date_added = Date.parse(add_event["added_at"])
 
@@ -46,9 +49,6 @@ class ChartExtractor
 
       chart.sort_by {|k, v| -v}.each do |track_id, count|
         track = canonical_tracks[track_id]
-        if count > 50
-          puts "#{track_id} - #{count} #{track["full_name"]} - #{track["artist_names"]} - #{track["release_date"]}"
-        end
 
         csv << [
           track_id,
