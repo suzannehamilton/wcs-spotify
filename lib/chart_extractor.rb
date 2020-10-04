@@ -18,18 +18,21 @@ class ChartExtractor
       canonical_tracks[track_id] = track
     end
 
-    puts "Built track lookup hash of  #{canonical_data.length} tracks"
+    puts "Built track lookup hash of #{canonical_data.length} tracks"
 
-    count = 0
+    chart = Hash.new(0)
 
     playlist_data.each do |add_event|
       date_added = Date.parse(add_event["added_at"])
 
       if (date_added >= start_date && date_added <= end_date)
-        count = count + 1
+        track_id = add_event["track_id"]
+        canonical_track_id = canonical_tracks.fetch(track_id)["canonical_track_id"]
+
+        chart[canonical_track_id] = chart[canonical_track_id] + 1
       end
     end
 
-    puts "Found #{count} adds in range"
+    puts chart.sort_by {|k, v| -v}.take(20)
   end
 end
