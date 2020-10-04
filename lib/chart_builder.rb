@@ -1,6 +1,7 @@
 require "logging"
 require "thor"
 
+require_relative "chart_extractor"
 require_relative "playlist_creator"
 require_relative "track_downloader"
 require_relative "track_fetcher"
@@ -30,6 +31,22 @@ class ChartBuilder < Thor
 
     canonical_track_finder = CanonicalTrackFinder.new
     canonical_track_finder.find_tracks(playlist_data, output_path)
+
+    puts "Output saved to #{output_path}"
+  end
+
+  desc "extract_chart PLAYLIST_DATA_FILE CANONICAL_TRACK_FILE START_DATE END_DATE",
+    "Calculate a chart between two dates"
+  def extract_chart(playlist_data, canonical_track_data, start_date, end_date)
+    output_path = "results/charts/chart_from_#{start_date}_to_#{end_date}_#{DateTime.now}.csv"
+
+    chart_extractor = ChartExtractor.new
+    chart_extractor.create_chart(
+      playlist_data,
+      canonical_track_data,
+      start_date,
+      end_date
+    )
 
     puts "Output saved to #{output_path}"
   end
