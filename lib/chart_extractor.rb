@@ -3,7 +3,8 @@ class ChartExtractor
     playlist_data_file,
     canonical_track_data_file,
     start_date,
-    end_date
+    end_date,
+    output_path
   )
     playlist_data = CSV.read(playlist_data_file, headers: true)
     puts "Found #{playlist_data.length} lines in raw playlist data"
@@ -18,8 +19,6 @@ class ChartExtractor
       canonical_tracks[track_id] = track
     end
 
-    puts "Built track lookup hash of #{canonical_data.length} tracks"
-
     chart = Hash.new(0)
 
     playlist_data.each do |add_event|
@@ -33,9 +32,35 @@ class ChartExtractor
       end
     end
 
-    chart.sort_by {|k, v| -v}.take(40).each do |track_id, count|
-      track = canonical_tracks[track_id]
-      puts "#{count} #{track["full_name"]} - #{track["artist_names"]} - #{track["release_date"]}"
+    CSV.open(output_path, "wb") do |csv|
+      csv << [
+        "track_id",
+        "total_adds",
+        "full_name",
+        "artist_ids",
+        "artist_names",
+        "release_date",
+        "release_date_precision",
+        "available_markets",
+      ]
+
+      chart.sort_by {|k, v| -v}.each do |track_id, count|
+        track = canonical_tracks[track_id]
+        if count > 50
+          puts "#{track_id} - #{count} #{track["full_name"]} - #{track["artist_names"]} - #{track["release_date"]}"
+        end
+
+        csv << [
+          track_id,
+          count,
+          track["full_name"],
+          track["artist_ids"],
+          track["artist_names"],
+          track["release_date"],
+          track["release_date_precision"],
+          track["available_markets"],
+        ]
+      end
     end
   end
 end

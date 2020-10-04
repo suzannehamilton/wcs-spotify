@@ -45,7 +45,8 @@ class ChartBuilder < Thor
       playlist_data,
       canonical_track_data,
       Date.parse(start_date),
-      Date.parse(end_date)
+      Date.parse(end_date),
+      output_path
     )
 
     puts "Output saved to #{output_path}"
