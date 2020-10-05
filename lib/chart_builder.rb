@@ -3,8 +3,6 @@ require "thor"
 
 require_relative "chart_extractor"
 require_relative "playlist_creator"
-require_relative "track_downloader"
-require_relative "track_fetcher"
 require_relative "canonical_track_finder"
 require_relative "playlist_track_fetcher"
 
@@ -50,32 +48,6 @@ class ChartBuilder < Thor
     )
 
     puts "Output saved to #{output_path}"
-  end
-
-  desc "fetch_tracks", "Find recent popular tracks"
-  def fetch_tracks
-    # TODO: Tidy filename
-    output_path = "results/tracks/tracks_#{DateTime.now}.yaml"
-
-    track_downloader = TrackDownloader.new
-    track_downloader.fetch_tracks(output_path)
-
-    puts "Tracks saved to #{output_path}"
-  end
-
-  desc "build_chart TRACK_DATA", "Create a chart from track data"
-  def build_chart(track_data)
-    chart_results = TrackFetcher.new.fetch_tracks(track_data)
-    chart_results.save_year_chart
-    chart_results.save_month_chart
-    chart_results.save_rising_tracks_chart
-  end
-
-# TODO: Refactor so we don't have to build all charts and just save some of them
-  desc "build_complete_chart TRACK_DATA", "Create chart with all tracks"
-  def build_complete_chart(track_data)
-    chart_results = TrackFetcher.new.fetch_tracks(track_data)
-    chart_results.save_whole_chart
   end
 
   desc "create_playlist", "Create a Spotify playlist for a chart"
