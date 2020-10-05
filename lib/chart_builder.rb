@@ -33,9 +33,9 @@ class ChartBuilder < Thor
     puts "Output saved to #{output_path}"
   end
 
-  desc "extract_chart PLAYLIST_DATA_FILE CANONICAL_TRACK_FILE START_DATE END_DATE",
+  desc "extract_chart PLAYLIST_DATA_FILE CANONICAL_TRACK_FILE START_DATE END_DATE EARLIEST_RELEASE_DATE",
     "Calculate a chart between two dates"
-  def extract_chart(playlist_data, canonical_track_data, start_date, end_date)
+  def extract_chart(playlist_data, canonical_track_data, start_date, end_date, earliest_release_date)
     output_path = "results/charts/chart_from_#{start_date}_to_#{end_date}_#{DateTime.now}.csv"
 
     chart_extractor = ChartExtractor.new
@@ -44,6 +44,7 @@ class ChartBuilder < Thor
       canonical_track_data,
       Date.parse(start_date),
       Date.parse(end_date),
+      Date.parse(earliest_release_date),
       output_path
     )
 

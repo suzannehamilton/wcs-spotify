@@ -4,6 +4,7 @@ class ChartExtractor
     canonical_track_data_file,
     start_date,
     end_date,
+    earliest_release_date,
     output_path
   )
     playlist_data = CSV.read(playlist_data_file, headers: true)
@@ -35,6 +36,13 @@ class ChartExtractor
       end
     end
 
+    chart_in_release_window = chart.filter { |track_id, count|
+      track = canonical_tracks[track_id]
+      # TODO: Handle month and year precisions
+      track["release_date_precision"] == "day" &&
+        Date.parse(track["release_date"]) >= earliest_release_date
+    }
+
     CSV.open(output_path, "wb") do |csv|
       csv << [
         "track_id",
@@ -47,8 +55,9 @@ class ChartExtractor
         "available_markets",
       ]
 
-      chart.sort_by {|k, v| -v}.each do |track_id, count|
+      chart_in_release_window.sort_by {|k, v| -v}.each do |track_id, count|
         track = canonical_tracks[track_id]
+        puts "Track '#{track['full_name']}' was released on '#{track['release_date']}'"
 
         csv << [
           track_id,
