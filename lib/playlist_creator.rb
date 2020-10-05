@@ -47,11 +47,11 @@ class PlaylistCreator
 
     chart_tracks = []
 
-    CSV.foreach("results/rising_tracks_2017_October_2017-11-03_22\:22\:38.csv", headers: :first_row) do |row|
-      chart_tracks << ChartTrack.new(row["track_id"], row["score"], row["name"], row["artists"])
+    CSV.foreach("results/charts/chart_from_2020-09-01_to_2020-09-30_2020-10-04T22:51:54+01:00.csv", headers: :first_row) do |row|
+      chart_tracks << ChartTrack.new(row["track_id"], row["total_adds"], row["full_name"], row["artist_names"])
     end
 
-    chart_size = chart_tracks.size
+    chart_size = 40
 
     top_tracks = chart_tracks.take(chart_size)
     tracks_tied_for_last_place = chart_tracks[chart_size..-1].select { |t| t.score == top_tracks.last.score }
@@ -65,13 +65,15 @@ class PlaylistCreator
       .map { |batch| RSpotify::Track.find(batch) }
       .flatten
 
-    playlist = user.create_playlist!("Fast tracks", public: false)
+    puts "Creating playlist"
+
+    playlist = user.create_playlist!("Test playlist", public: false)
 
     # Search for the playlist again. This is a workaround for a possible bug in
     # the Spotify API: when a playlist is created, the playlist's owner is not
     # populated correctly.
     chart_playlist = RSpotify::Playlist.find('westiecharts', playlist.id)
-    chart_playlist.change_details!(description: "Tracks from up to 1990 with at least 10 adds")
+    chart_playlist.change_details!(description: "Test playlist on 2020-10-05")
 
     spotify_tracks.each_slice(50) do |batch|
       chart_playlist.add_tracks!(batch)
