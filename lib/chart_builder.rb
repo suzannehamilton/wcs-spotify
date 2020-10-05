@@ -50,8 +50,9 @@ class ChartBuilder < Thor
     puts "Output saved to #{output_path}"
   end
 
-  desc "create_playlist", "Create a Spotify playlist for a chart"
-  def create_playlist
+  desc "create_playlist CHART_DATA_FILE TITLE DESCRIPTION",
+    "Create a Spotify playlist for a chart"
+  def create_playlist(chart_data_file, title, description)
     # TODO: Pass config into PlaylistCreator
     config = YAML::load_file("config.yaml")
     client_id = config["spotify_api"]["client_id"]
@@ -63,6 +64,11 @@ class ChartBuilder < Thor
       "&scope=playlist-modify-public playlist-modify-private"
     auth_code = ask("And enter the authorization code returned:").strip
 
-    PlaylistCreator.new.create_playlist(auth_code)
+    PlaylistCreator.new.create_playlist(
+      auth_code,
+      chart_data_file,
+      title,
+      description
+    )
   end
 end

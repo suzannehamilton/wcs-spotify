@@ -12,7 +12,12 @@ class PlaylistCreator
     @logger = Logging.logger[self]
   end
 
-  def create_playlist(auth_code)
+  def create_playlist(
+    auth_code,
+    chart_data_file,
+    playlist_title,
+    playlist_description
+  )
     config = YAML::load_file("config.yaml")
     client_id = config["spotify_api"]["client_id"]
     client_secret = config["spotify_api"]["client_secret"]
@@ -47,7 +52,7 @@ class PlaylistCreator
 
     chart_tracks = []
 
-    CSV.foreach("results/charts/chart_from_2020-09-01_to_2020-09-30_2020-10-04T22:51:54+01:00.csv", headers: :first_row) do |row|
+    CSV.foreach(chart_data_file, headers: :first_row) do |row|
       chart_tracks << ChartTrack.new(row["track_id"], row["total_adds"], row["full_name"], row["artist_names"])
     end
 
@@ -67,19 +72,19 @@ class PlaylistCreator
 
     puts "Creating playlist"
 
-    playlist = user.create_playlist!("Test playlist", public: false)
+    playlist = user.create_playlist!(playlist_title, public: false)
 
     # Search for the playlist again. This is a workaround for a possible bug in
     # the Spotify API: when a playlist is created, the playlist's owner is not
     # populated correctly.
     chart_playlist = RSpotify::Playlist.find('westiecharts', playlist.id)
-    chart_playlist.change_details!(description: "Test playlist on 2020-10-05")
+    chart_playlist.change_details!(description: playlist_description)
 
     spotify_tracks.each_slice(50) do |batch|
       chart_playlist.add_tracks!(batch)
     end
 
-    logger.info "Created playlist '#{playlist.uri}' with #{spotify_tracks.count} tracks"
+    logger.info "Created playlist '#{playlist.uri}' named '#{playlist_title}' with #{spotify_tracks.count} tracks"
   end
 
 private
