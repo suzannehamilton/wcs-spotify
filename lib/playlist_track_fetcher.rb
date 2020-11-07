@@ -1,3 +1,7 @@
+require "retriable"
+
+require_relative "spotify/playlist_search"
+
 class PlaylistTrackFetcher
   def initialize
     @logger = Logging.logger[self]
