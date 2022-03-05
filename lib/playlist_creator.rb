@@ -85,6 +85,7 @@ class PlaylistCreator
     end
 
     logger.info "Created playlist '#{playlist.uri}' named '#{playlist_title}' with #{spotify_tracks.count} tracks"
+    `echo #{playlist.uri} | pbcopy`
   end
 
 private
