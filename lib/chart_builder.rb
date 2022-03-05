@@ -59,10 +59,14 @@ class ChartBuilder < Thor
     client_id = config["spotify_api"]["client_id"]
     redirect_uri = "http://localhost/callback/"
 
-    puts "Visit this URL:"
-    puts "https://accounts.spotify.com/authorize?client_id=#{client_id}" +
+    auth_url = "https://accounts.spotify.com/authorize?client_id=#{client_id}" +
       "&response_type=code&redirect_uri=#{redirect_uri}" +
-      "&scope=playlist-modify-public playlist-modify-private"
+      "&scope=playlist-modify-public%20playlist-modify-private"
+
+    IO.popen("pbcopy", "w") { |pipe| pipe.puts auth_url }
+    puts "Visit this URL (copied to clipboard):"
+    puts auth_url
+
     auth_code = ask("And enter the authorization code returned:").strip
 
     PlaylistCreator.new.create_playlist(
