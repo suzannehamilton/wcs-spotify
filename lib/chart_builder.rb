@@ -1,10 +1,11 @@
 require "logging"
 require "thor"
 
+require_relative "canonical_track_finder"
 require_relative "chart_extractor"
 require_relative "playlist_creator"
-require_relative "canonical_track_finder"
 require_relative "playlist_track_fetcher"
+require_relative "source_playlist_search"
 
 class ChartBuilder < Thor
   Logging.logger.root.level = :info
@@ -12,6 +13,17 @@ class ChartBuilder < Thor
     Logging.appenders.stdout("stdout"),
     Logging.appenders.file("log/chart_builder.log")
   ]
+
+  desc "find_source_playlists", "Find existing playlists with West Coast Swing tracks"
+  def find_source_playlists
+    output_path = "results/source_playlists/playlists_#{DateTime.now}.csv"
+
+    source_playlist_search = SourcePlaylistSearch.new
+    source_playlist_search.find_playlists(output_path)
+
+    puts "Source playlists saved to #{output_path}"
+    IO.popen("pbcopy", "w") { |pipe| pipe.puts output_path }
+  end
 
   desc "fetch_listening_data", "Find tracks from all West Coast Swing playlists"
   def fetch_listening_data
