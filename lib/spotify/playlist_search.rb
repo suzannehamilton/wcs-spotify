@@ -20,9 +20,7 @@ class PlaylistSearch
         []
       end
 
-      filtered_results = result_set.select { |p| matches_term?(p, search_term) }
-
-      results.concat(filtered_results)
+      results.concat(result_set)
 
       offset += batch_size
 
