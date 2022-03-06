@@ -8,8 +8,8 @@ class SourcePlaylistSearch
 
   def find_playlists(output_path)
     search_terms = [
-      "wcs",
-      # "westcoastswing",
+      # "wcs",
+      "westcoastswing",
       # "west coastswing",
       # "westcoast swing",
       # "west coast swing",

@@ -3,6 +3,7 @@ require "thor"
 
 require_relative "canonical_track_finder"
 require_relative "chart_extractor"
+require_relative "playlist_combiner"
 require_relative "playlist_creator"
 require_relative "playlist_track_fetcher"
 require_relative "source_playlist_search"
@@ -22,6 +23,18 @@ class ChartBuilder < Thor
     source_playlist_search.find_playlists(output_path)
 
     puts "Source playlists saved to #{output_path}"
+    IO.popen("pbcopy", "w") { |pipe| pipe.puts output_path }
+  end
+
+  desc "combine_source_playlists PLAYLIST_1 PLAYLIST_2",
+    "Combine existing lists of playlist search results"
+  def combine_source_playlists(playlist1, playlist2)
+    output_path = "results/source_playlists/playlists_#{DateTime.now}.csv"
+
+    playlist_combiner = PlaylistCombiner.new
+    playlist_combiner.combine(playlist1, playlist2)
+
+    puts "Playlists combined and saved to #{output_path}"
     IO.popen("pbcopy", "w") { |pipe| pipe.puts output_path }
   end
 
