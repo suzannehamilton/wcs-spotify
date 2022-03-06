@@ -28,11 +28,11 @@ class ChartBuilder < Thor
 
   desc "combine_source_playlists PLAYLIST_1 PLAYLIST_2",
     "Combine existing lists of playlist search results"
-  def combine_source_playlists(playlist1, playlist2)
+  def combine_source_playlists(playlist_1, playlist_2)
     output_path = "results/source_playlists/playlists_#{DateTime.now}.csv"
 
     playlist_combiner = PlaylistCombiner.new
-    playlist_combiner.combine(playlist1, playlist2)
+    playlist_combiner.combine(playlist_1, playlist_2, output_path)
 
     puts "Playlists combined and saved to #{output_path}"
     IO.popen("pbcopy", "w") { |pipe| pipe.puts output_path }
