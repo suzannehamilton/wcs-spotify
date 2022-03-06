@@ -8,12 +8,12 @@ class SourcePlaylistSearch
 
   def find_playlists(output_path)
     search_terms = [
-      # "wcs",
+      "wcs",
       "westcoastswing",
-      # "west coastswing",
-      # "westcoast swing",
-      # "west coast swing",
-      # "westie",
+      "west coastswing",
+      "westcoast swing",
+      "west coast swing",
+      "westie",
     ]
 
     # TODO: Reference file relative to this one?
