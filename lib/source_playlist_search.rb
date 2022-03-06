@@ -16,6 +16,8 @@ class SourcePlaylistSearch
       "westie",
       "west coast swing music",
       "wcs music",
+      "west coast swing blues",
+      "wcs blues",
     ]
 
     # TODO: Reference file relative to this one?
