@@ -20,6 +20,10 @@ class SourcePlaylistSearch
       "wcs blues",
       "west coast swing beginner",
       "wcs beginner",
+      "west coast swing slow",
+      "wcs slow",
+      "west coast swing fast",
+      "wcs fast",
     ]
 
     # TODO: Reference file relative to this one?
