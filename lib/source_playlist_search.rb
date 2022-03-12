@@ -7,6 +7,17 @@ class SourcePlaylistSearch
   end
 
   def find_playlists(output_path)
+    base_terms = [
+      "wcs",
+      "w.c.s.",
+      "w.c.s",
+      "west coast swing",
+      "westcoastswing",
+      "westcoast swing",
+      "west coastswing",
+      "westie",
+    ]
+
     search_terms = [
       "wcs",
       "westcoastswing",
@@ -37,7 +48,7 @@ class SourcePlaylistSearch
 
     # TODO: Deduplicate playlist IDs
     wcs_playlists = search_terms.map { |term|
-      @playlist_search.search_playlists(term)
+      @playlist_search.search_playlists(term, base_terms)
     }.flatten
 
     CSV.open(output_path, "wb") do |csv|

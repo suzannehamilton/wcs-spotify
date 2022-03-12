@@ -4,7 +4,7 @@ class PlaylistSearch
     @logger = Logging.logger[self]
   end
 
-  def search_playlists(search_term)
+  def search_playlists(search_term, base_terms)
     found_all_results = false
     offset = 0
 
@@ -20,7 +20,12 @@ class PlaylistSearch
         []
       end
 
-      filtered_results = result_set.select { |p| matches_term?(p, search_term) }
+      filtered_results = result_set.select { |p|
+        matches = matches_term?(p, base_terms)
+        puts "Playlist does not include base term. Name: '#{p.name}', description: '#{p.description}'" unless matches
+
+        matches
+      }
 
       results.concat(filtered_results)
 
@@ -39,10 +44,11 @@ private
   # Spotify search results are too broad. For example, the search term "wcs"
   # matches playlists named "wc" which are very unlikely to be relevant. So only
   # include playlists whose name or description contain the exact search term.
-  def matches_term?(playlist, search_term)
-    term = search_term.downcase
-    playlist.name.downcase.include?(term) ||
-      (playlist.description && playlist.description.downcase.include?(term))
+  def matches_term?(playlist, base_terms)
+    base_terms.any? { |term|
+      playlist.name.downcase.include?(term) ||
+        (playlist.description && playlist.description.downcase.include?(term))
+    }
     rescue RestClient::ResourceNotFound
       @logger.warn "Could not find playlist #{playlist.uri}"
       false
