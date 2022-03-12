@@ -16,7 +16,7 @@ class PlaylistSearch
       result_set = begin
         RSpotify::Playlist.search(search_term, limit: batch_size, offset: offset)
       rescue RestClient::ResourceNotFound
-        @logger.warn "Count not get search results for term '#{search_term}' with offset #{offset} and batch size #{batch_size}"
+        @logger.warn "Could not get search results for term '#{search_term}' with offset #{offset} and batch size #{batch_size}"
         []
       end
 
