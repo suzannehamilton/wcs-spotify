@@ -38,7 +38,7 @@ class ChartBuilder < Thor
     IO.popen("pbcopy", "w") { |pipe| pipe.puts output_path }
   end
 
-  desc "fetch_source_tracks", "Find tracks from all West Coast Swing playlists"
+  desc "fetch_source_tracks PLAYLIST_DATA_FILE", "Find tracks from all West Coast Swing playlists"
   def fetch_source_tracks(source_playlists_path)
     output_path = "results/raw_playlist_data/tracks_#{DateTime.now}.csv"
 
