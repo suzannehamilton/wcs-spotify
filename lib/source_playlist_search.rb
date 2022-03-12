@@ -21,6 +21,9 @@ class SourcePlaylistSearch
     additional_terms = [
       "beginner",
       "blues",
+      "comp",
+      "competition",
+      "competitions",
       "fast",
       "medium",
       "music",
