@@ -24,6 +24,8 @@ class SourcePlaylistSearch
       "wcs slow",
       "west coast swing fast",
       "wcs fast",
+      "west coast swing tracks",
+      "wcs tracks",
     ]
 
     # TODO: Reference file relative to this one?
