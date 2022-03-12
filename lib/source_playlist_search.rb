@@ -19,14 +19,22 @@ class SourcePlaylistSearch
     ]
 
     additional_terms = [
+      "advanced",
+      "all star",
+      "all-star",
+      "allstar",
       "beginner",
       "blues",
+      "champion",
+      "champions",
       "comp",
       "competition",
       "competitions",
       "fast",
+      "intermediate",
       "medium",
       "music",
+      "novice",
       "practice",
       "slow",
       "tracks",
