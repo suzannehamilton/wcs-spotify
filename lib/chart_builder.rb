@@ -5,7 +5,6 @@ require_relative "canonical_track_finder"
 require_relative "chart_extractor"
 require_relative "playlist_combiner"
 require_relative "playlist_creator"
-require_relative "playlist_track_fetcher"
 require_relative "source_playlist_search"
 require_relative "source_track_fetcher"
 
@@ -37,16 +36,6 @@ class ChartBuilder < Thor
 
     puts "Playlists combined and saved to #{output_path}"
     IO.popen("pbcopy", "w") { |pipe| pipe.puts output_path }
-  end
-
-  desc "fetch_listening_data", "Find tracks from all West Coast Swing playlists"
-  def fetch_listening_data
-    output_path = "results/raw_playlist_data/tracks_#{DateTime.now}.csv"
-
-    playlist_track_fetcher = PlaylistTrackFetcher.new
-    playlist_track_fetcher.fetch_tracks(output_path)
-
-    puts "Output saved to #{output_path}"
   end
 
   desc "fetch_source_tracks", "Find tracks from all West Coast Swing playlists"
