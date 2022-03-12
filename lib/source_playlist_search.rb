@@ -18,28 +18,21 @@ class SourcePlaylistSearch
       "westie",
     ]
 
-    search_terms = [
-      "wcs",
-      "westcoastswing",
-      "west coastswing",
-      "westcoast swing",
-      "west coast swing",
-      "westie",
-      "west coast swing music",
-      "wcs music",
-      "west coast swing blues",
-      "wcs blues",
-      "west coast swing beginner",
-      "wcs beginner",
-      "west coast swing slow",
-      "wcs slow",
-      "west coast swing fast",
-      "wcs fast",
-      "west coast swing tracks",
-      "wcs tracks",
-      "west coast swing practice",
-      "wcs practice",
+    additional_terms = [
+      "beginner",
+      "blues",
+      "fast",
+      "medium",
+      "music",
+      "practice",
+      "slow",
+      "tracks",
     ]
+
+    combined_terms = base_terms.flat_map { |base|
+      additional_terms.map { |additional| "#{base} #{additional}" }
+    }
+    search_terms = base_terms + combined_terms
 
     # TODO: Reference file relative to this one?
     config = YAML::load_file("config.yaml")
