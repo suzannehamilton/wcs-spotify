@@ -21,10 +21,7 @@ class PlaylistSearch
       end
 
       filtered_results = result_set.select { |p|
-        matches = matches_term?(p, base_terms)
-        puts "Playlist does not include base term. Name: '#{p.name}', description: '#{p.description}'" unless matches
-
-        matches
+        matches_term?(p, base_terms)
       }
 
       results.concat(filtered_results)
