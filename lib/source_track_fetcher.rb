@@ -29,7 +29,13 @@ class SourceTrackFetcher
       ]
 
       playlists.each do |playlist_summary|
-        playlist = RSpotify::Playlist.find_by_id(playlist_summary["id"])
+        playlist_id = playlist_summary["id"]
+        begin
+          playlist = RSpotify::Playlist.find_by_id(playlist_id)
+        rescue RestClient::ResourceNotFound
+          logger.warn("Playlist '#{playlist_id}' not found")
+          next
+        end
 
         logger.info playlist.name
 
