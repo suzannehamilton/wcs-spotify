@@ -30,12 +30,7 @@ class SourceTrackFetcher
 
       playlists.each do |playlist_summary|
         playlist_id = playlist_summary["id"]
-        begin
-          playlist = RSpotify::Playlist.find_by_id(playlist_id)
-        rescue RestClient::ResourceNotFound
-          logger.warn("Playlist '#{playlist_id}' not found")
-          next
-        end
+        playlist = get_playlist(playlist_id)
 
         logger.info playlist.name
 
@@ -108,6 +103,17 @@ private
       rescue NoMethodError => e
         logger.warn "Playlist '#{playlist.uri}' has track total #{playlist.total} and error '#{e}'"
         []
+      end
+    end
+  end
+
+  def get_playlist(playlist_id)
+    Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway], tries: 3 do
+      begin
+        playlist = RSpotify::Playlist.find_by_id(playlist_id)
+      rescue RestClient::ResourceNotFound
+        logger.warn("Playlist '#{playlist_id}' not found")
+        next
       end
     end
   end
