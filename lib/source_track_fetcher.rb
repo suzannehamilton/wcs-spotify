@@ -31,6 +31,7 @@ class SourceTrackFetcher
       playlists.each do |playlist_summary|
         playlist_id = playlist_summary["id"]
         playlist = get_playlist(playlist_id)
+        next if playlist.nil?
 
         logger.info playlist.name
 
