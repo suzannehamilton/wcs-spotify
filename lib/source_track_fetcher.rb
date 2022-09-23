@@ -75,7 +75,7 @@ private
   attr_reader :logger
 
   def get_playlist_tracks(playlist, offset)
-    Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway], tries: 3 do
+    Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway, RestClient::InternalServerError], tries: 3 do
       begin
         playlist.tracks(offset: offset)
       rescue RestClient::ResourceNotFound
@@ -92,7 +92,7 @@ private
   end
 
   def get_playlist_added_dates(playlist)
-    Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway], tries: 3 do
+    Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway, RestClient::InternalServerError], tries: 3 do
       begin
         return playlist.tracks_added_at
       rescue RestClient::ResourceNotFound
@@ -109,7 +109,7 @@ private
   end
 
   def get_playlist(playlist_id)
-    Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway], tries: 3 do
+    Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway, RestClient::InternalServerError], tries: 3 do
       begin
         playlist = RSpotify::Playlist.find_by_id(playlist_id)
       rescue RestClient::ResourceNotFound
