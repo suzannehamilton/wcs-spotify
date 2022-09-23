@@ -7,10 +7,13 @@ class PlaylistSearch
   def search_playlists(search_term, base_terms)
     found_all_results = false
     offset = 0
+    # The Spotify search API now returns an HTTP 400 error when the offset is
+    # too high
+    max_offset = 1000
 
     results = []
 
-    while !found_all_results
+    while !found_all_results && offset < max_offset
       @logger.info "Searching for '#{search_term}' with offset #{offset}"
 
       result_set = begin
