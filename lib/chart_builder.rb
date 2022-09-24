@@ -76,6 +76,28 @@ class ChartBuilder < Thor
     puts "Output saved to #{output_path}"
   end
 
+  desc "monthly_chart PLAYLIST_DATA_FILE CANONICAL_TRACK_FILE MONTH",
+    "Calculate a chart for a given month, e.g. '2022-05', including tracks released on any date"
+  def monthly_chart(playlist_data, canonical_track_data, month)
+    start_date = Date.strptime(month, "%Y-%m")
+    end_date = start_date.next_month.prev_day
+    earliest_release_date = Date.new(1900, 1, 1)
+
+    output_path = "results/charts/chart_from_#{start_date}_to_#{end_date}_#{DateTime.now}.csv"
+
+    chart_extractor = ChartExtractor.new
+    chart_extractor.create_chart(
+      playlist_data,
+      canonical_track_data,
+      start_date,
+      end_date,
+      earliest_release_date,
+      output_path
+    )
+
+    puts "Output saved to #{output_path}"
+  end
+
   desc "create_playlist CHART_DATA_FILE TITLE DESCRIPTION",
     "Create a Spotify playlist for a chart"
   def create_playlist(chart_data_file, title, description)
