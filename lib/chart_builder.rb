@@ -78,7 +78,7 @@ class ChartBuilder < Thor
 
   option :recent, :type => :boolean
   desc "monthly_chart PLAYLIST_DATA_FILE CANONICAL_TRACK_FILE MONTH",
-    "Calculate a chart for a given month, e.g. '2022-05', including tracks released on any date"
+    "Calculate a chart for a given month, e.g. '2022-05'"
   def monthly_chart(playlist_data, canonical_track_data, month)
     start_date = Date.strptime(month, "%Y-%m")
     end_date = start_date.next_month.prev_day
@@ -107,6 +107,60 @@ class ChartBuilder < Thor
     "Create a Spotify playlist for a chart"
   def create_playlist(chart_data_file, title, description)
     # TODO: Pass config into PlaylistCreator
+    config = YAML::load_file("config.yaml")
+    client_id = config["spotify_api"]["client_id"]
+    redirect_uri = "http://localhost/callback/"
+
+    auth_url = "https://accounts.spotify.com/authorize?client_id=#{client_id}" +
+      "&response_type=code&redirect_uri=#{redirect_uri}" +
+      "&scope=playlist-modify-public%20playlist-modify-private"
+
+    IO.popen("pbcopy", "w") { |pipe| pipe.puts auth_url }
+    puts "Visit this URL (copied to clipboard):"
+    puts auth_url
+
+    auth_code = ask("And enter the authorization code returned:").strip
+
+    PlaylistCreator.new.create_playlist(
+      auth_code,
+      chart_data_file,
+      title,
+      description
+    )
+  end
+
+  option :recent, :type => :boolean
+  desc "monthly_playlist PLAYLIST_DATA_FILE CANONICAL_TRACK_FILE MONTH",
+    "Create a playlist for a given month, e.g. '2022-05'"
+  def monthly_playlist(playlist_data, canonical_track_data, month)
+    start_date = Date.strptime(month, "%Y-%m")
+    end_date = start_date.next_month.prev_day
+    earliest_release_date = if options[:recent]
+      start_date.prev_month(2)
+    else
+      Date.new(1900, 1, 1)
+    end
+
+    output_path = "results/charts/chart_from_#{start_date}_to_#{end_date}_#{DateTime.now}.csv"
+
+    chart_extractor = ChartExtractor.new
+    chart_extractor.create_chart(
+      playlist_data,
+      canonical_track_data,
+      start_date,
+      end_date,
+      earliest_release_date,
+      output_path
+    )
+
+    puts "Chart output saved to #{output_path}"
+
+    formatted_month = start_date.strftime('%B %Y')
+    # TODO: Change title and description if recent
+    title = "Westie Charts: #{formatted_month}"
+    description = "Top West Coast Swing tracks for #{formatted_month}"
+    chart_data_file = output_path
+
     config = YAML::load_file("config.yaml")
     client_id = config["spotify_api"]["client_id"]
     redirect_uri = "http://localhost/callback/"
