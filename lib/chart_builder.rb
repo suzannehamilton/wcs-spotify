@@ -156,9 +156,17 @@ class ChartBuilder < Thor
     puts "Chart output saved to #{output_path}"
 
     formatted_month = start_date.strftime('%B %Y')
-    # TODO: Change title and description if recent
-    title = "Westie Charts: #{formatted_month}"
-    description = "Top West Coast Swing tracks for #{formatted_month}"
+    title = if options[:recent]
+      "Rising Westie Charts: #{formatted_month}"
+    else
+      "Westie Charts: #{formatted_month}"
+    end
+    description = if options[:recent]
+      "Top new West Coast Swing tracks for #{formatted_month}"
+    else
+      "Top West Coast Swing tracks for #{formatted_month}"
+    end
+
     chart_data_file = output_path
 
     config = YAML::load_file("config.yaml")
