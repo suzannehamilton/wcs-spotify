@@ -106,27 +106,7 @@ class ChartBuilder < Thor
   desc "create_playlist CHART_DATA_FILE TITLE DESCRIPTION",
     "Create a Spotify playlist for a chart"
   def create_playlist(chart_data_file, title, description)
-    # TODO: Pass config into PlaylistCreator
-    config = YAML::load_file("config.yaml")
-    client_id = config["spotify_api"]["client_id"]
-    redirect_uri = "http://localhost/callback/"
-
-    auth_url = "https://accounts.spotify.com/authorize?client_id=#{client_id}" +
-      "&response_type=code&redirect_uri=#{redirect_uri}" +
-      "&scope=playlist-modify-public%20playlist-modify-private"
-
-    IO.popen("pbcopy", "w") { |pipe| pipe.puts auth_url }
-    puts "Visit this URL (copied to clipboard):"
-    puts auth_url
-
-    auth_code = ask("And enter the authorization code returned:").strip
-
-    PlaylistCreator.new.create_playlist(
-      auth_code,
-      chart_data_file,
-      title,
-      description
-    )
+    playlist(chart_data_file, title, description)
   end
 
   option :recent, :type => :boolean
@@ -167,8 +147,13 @@ class ChartBuilder < Thor
       "Top West Coast Swing tracks for #{formatted_month}"
     end
 
-    chart_data_file = output_path
+    playlist(output_path, title, description)
+  end
 
+private
+
+  def playlist(chart_data_file, title, description)
+    # TODO: Pass config into PlaylistCreator
     config = YAML::load_file("config.yaml")
     client_id = config["spotify_api"]["client_id"]
     redirect_uri = "http://localhost/callback/"
