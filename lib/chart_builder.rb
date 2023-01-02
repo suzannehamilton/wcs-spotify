@@ -150,6 +150,48 @@ class ChartBuilder < Thor
     playlist(output_path, title, description)
   end
 
+
+    option :recent, :type => :boolean
+    desc "annual_playlist PLAYLIST_DATA_FILE CANONICAL_TRACK_FILE YEAR",
+      "Create a playlist for a given month, e.g. '2022-05'"
+    def annual_playlist(playlist_data, canonical_track_data, year)
+      start_date = Date.strptime(year, "%Y")
+      end_date = start_date.next_year.prev_day
+      earliest_release_date = if options[:recent]
+        start_date.prev_month(1)
+      else
+        Date.new(1900, 1, 1)
+      end
+
+      output_path = "results/charts/chart_from_#{start_date}_to_#{end_date}_#{DateTime.now}.csv"
+
+      chart_extractor = ChartExtractor.new
+      chart_extractor.create_chart(
+        playlist_data,
+        canonical_track_data,
+        start_date,
+        end_date,
+        earliest_release_date,
+        output_path
+      )
+
+      puts "Chart output saved to #{output_path}"
+
+      formatted_year = start_date.strftime('%Y')
+      title = if options[:recent]
+        "Westie Charts (new songs): #{formatted_year}"
+      else
+        "Westie Charts: #{formatted_year}"
+      end
+      description = if options[:recent]
+        "Top new West Coast Swing tracks for #{formatted_year}"
+      else
+        "Top West Coast Swing tracks for #{formatted_year}"
+      end
+
+      playlist(output_path, title, description)
+    end
+
 private
 
   def playlist(chart_data_file, title, description)
