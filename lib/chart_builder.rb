@@ -106,7 +106,8 @@ class ChartBuilder < Thor
   desc "create_playlist CHART_DATA_FILE TITLE DESCRIPTION",
     "Create a Spotify playlist for a chart"
   def create_playlist(chart_data_file, title, description)
-    playlist(chart_data_file, title, description)
+    # TODO: Make chart size a parameter
+    playlist(chart_data_file, title, description, 40)
   end
 
   option :recent, :type => :boolean
@@ -147,7 +148,7 @@ class ChartBuilder < Thor
       "Top West Coast Swing tracks for #{formatted_month}"
     end
 
-    playlist(output_path, title, description)
+    playlist(output_path, title, description, 40)
   end
 
 
@@ -189,12 +190,12 @@ class ChartBuilder < Thor
         "Top West Coast Swing tracks for #{formatted_year}"
       end
 
-      playlist(output_path, title, description)
+      playlist(output_path, title, description, 200)
     end
 
 private
 
-  def playlist(chart_data_file, title, description)
+  def playlist(chart_data_file, title, description, chart_size)
     # TODO: Pass config into PlaylistCreator
     config = YAML::load_file("config.yaml")
     client_id = config["spotify_api"]["client_id"]
@@ -214,7 +215,8 @@ private
       auth_code,
       chart_data_file,
       title,
-      description
+      description,
+      chart_size
     )
   end
 end

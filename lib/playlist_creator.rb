@@ -16,7 +16,8 @@ class PlaylistCreator
     auth_code,
     chart_data_file,
     playlist_title,
-    playlist_description
+    playlist_description,
+    chart_size
   )
     config = YAML::load_file("config.yaml")
     client_id = config["spotify_api"]["client_id"]
@@ -55,8 +56,6 @@ class PlaylistCreator
     CSV.foreach(chart_data_file, headers: :first_row) do |row|
       chart_tracks << ChartTrack.new(row["track_id"], row["total_adds"], row["full_name"], row["artist_names"])
     end
-
-    chart_size = 40
 
     top_tracks = chart_tracks.take(chart_size)
     tracks_tied_for_last_place = chart_tracks[chart_size..-1].select { |t| t.score == top_tracks.last.score }
