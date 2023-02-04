@@ -2,3 +2,5 @@ config.yaml
 results
 log
 spec/test_output/
+
+.DS_Store
