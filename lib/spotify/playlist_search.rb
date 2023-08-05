@@ -1,3 +1,5 @@
+require "retriable"
+
 class PlaylistSearch
   def initialize(batch_size: 50)
     @batch_size = batch_size
@@ -16,11 +18,13 @@ class PlaylistSearch
     while !found_all_results && offset < max_offset
       @logger.info "Searching for '#{search_term}' with offset #{offset}"
 
-      result_set = begin
-        RSpotify::Playlist.search(search_term, limit: batch_size, offset: offset)
-      rescue RestClient::ResourceNotFound
-        @logger.warn "Could not get search results for term '#{search_term}' with offset #{offset} and batch size #{batch_size}"
-        []
+      result_set = Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway, RestClient::InternalServerError, Errno::EHOSTUNREACH], tries: 3 do
+        begin
+          RSpotify::Playlist.search(search_term, limit: batch_size, offset: offset)
+        rescue RestClient::ResourceNotFound
+          @logger.warn "Could not get search results for term '#{search_term}' with offset #{offset} and batch size #{batch_size}"
+          []
+        end
       end
 
       filtered_results = result_set.select { |p|
