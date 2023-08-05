@@ -75,7 +75,7 @@ private
   attr_reader :logger
 
   def get_playlist_tracks(playlist, offset)
-    Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway, RestClient::InternalServerError], tries: 3 do
+    Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway, RestClient::InternalServerError, Errno::EHOSTUNREACH], tries: 3 do
       begin
         playlist.tracks(offset: offset)
       rescue RestClient::ResourceNotFound
