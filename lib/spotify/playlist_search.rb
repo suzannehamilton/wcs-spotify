@@ -1,4 +1,4 @@
-require "retriable"
+require_relative 'spotify_retry'
 
 class PlaylistSearch
   def initialize(batch_size: 50)
@@ -18,7 +18,7 @@ class PlaylistSearch
     while !found_all_results && offset < max_offset
       @logger.info "Searching for '#{search_term}' with offset #{offset}"
 
-      result_set = Retriable.retriable on: [RestClient::RequestTimeout, RestClient::BadGateway, RestClient::InternalServerError, Errno::EHOSTUNREACH], tries: 3 do
+      result_set = SpotifyRetry::retry do
         begin
           RSpotify::Playlist.search(search_term, limit: batch_size, offset: offset)
         rescue RestClient::ResourceNotFound
