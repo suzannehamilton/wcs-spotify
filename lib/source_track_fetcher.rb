@@ -43,7 +43,7 @@ class SourceTrackFetcher
           tracks_added_at = get_playlist_added_dates(playlist)
 
           track_set.each do |track|
-            unless (track.id.nil?)
+            if (!track.id.nil? && track.type == "track")
               added_at = tracks_added_at[track.id]
 
               artist_ids = track.artists.map { |artist| artist.id }.join(",")
