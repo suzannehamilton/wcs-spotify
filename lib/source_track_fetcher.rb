@@ -33,7 +33,7 @@ class SourceTrackFetcher
         playlist = get_playlist(playlist_id)
         next if playlist.nil?
 
-        logger.info playlist.name
+        logger.info "#{playlist_id}: '#{playlist.name}', #{playlist.total} tracks"
 
         total_tracks = playlist.total
         track_sets = (total_tracks / 100.to_f).ceil
