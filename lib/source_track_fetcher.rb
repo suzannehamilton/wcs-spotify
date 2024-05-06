@@ -16,6 +16,8 @@ class SourceTrackFetcher
 
     RSpotify.authenticate(config["spotify_api"]["client_id"], config["spotify_api"]["client_secret"])
 
+    ignored_playlists = Set.new(config["ignored_playlists"])
+
     CSV.open(output_path, "wb") do |csv|
       csv << [
         "track_id",
@@ -30,9 +32,10 @@ class SourceTrackFetcher
 
       playlists.each do |playlist_summary|
         playlist_id = playlist_summary["id"]
+	next if ignored_playlists.include?(playlist_id)
+
         playlist = get_playlist(playlist_id)
         next if playlist.nil?
-
         logger.info "#{playlist_id}: '#{playlist.name}', #{playlist.total} tracks"
 
         total_tracks = playlist.total

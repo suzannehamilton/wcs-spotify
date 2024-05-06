@@ -6,3 +6,6 @@
 spotify_api:
   client_id: your_client_id
   client_secret: your_client_secret
+
+# Array of Spotify playlist IDs that should be ignored when fetching tracks
+ignored_playlists: []
