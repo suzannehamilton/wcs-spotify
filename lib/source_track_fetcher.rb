@@ -51,7 +51,7 @@ class SourceTrackFetcher
 
               release_date = track.album.release_date
               release_date_precision = track.album.release_date_precision
-              markets = track.album.available_markets.join(",")
+              markets = (track.album.available_markets || []).join(",")
 
               csv << [
                 track.id,
