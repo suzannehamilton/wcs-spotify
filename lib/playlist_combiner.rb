@@ -29,28 +29,9 @@ class PlaylistCombiner
 
     combined = playlists_by_id_1.merge(playlists_by_id_2)
 
-    CSV.open(output_path, "wb") do |csv|
-      csv << [
-        "id",
-        "track_count",
-        "name",
-        "description",
-      ]
-
-      combined.each do |id, playlist|
-        csv << [
-          playlist["id"],
-          playlist["track_count"],
-          playlist["name"],
-          playlist["description"],
-        ]
-      end
-
-      logger.info "Saved #{combined.length} playlists"
-    end
+    save(combined, output_path)
   end
 
-  # TODO: Commonise with combine method
   def diff(playlist_path_1, playlist_path_2, output_path)
     playlists_1 = CSV.read(playlist_path_1, headers: true)
     puts "Found #{playlists_1.length} lines in playlist 1"
@@ -70,6 +51,14 @@ class PlaylistCombiner
 
     puts "Found #{diff_by_id.length} playlists in file 1 but not in file 2"
 
+    save(diff_by_id, output_path)
+  end
+
+private
+
+  attr_reader :logger
+
+  def save(playlists_by_id, output_path)
     CSV.open(output_path, "wb") do |csv|
       csv << [
         "id",
@@ -78,7 +67,7 @@ class PlaylistCombiner
         "description",
       ]
 
-      diff_by_id.each do |id, playlist|
+      playlists_by_id.each do |id, playlist|
         csv << [
           playlist["id"],
           playlist["track_count"],
@@ -87,11 +76,7 @@ class PlaylistCombiner
         ]
       end
 
-      logger.info "Saved #{diff_by_id.length} playlists"
+      logger.info "Saved #{playlists_by_id.length} playlists"
     end
   end
-
-  private
-
-    attr_reader :logger
 end
