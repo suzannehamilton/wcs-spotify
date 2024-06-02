@@ -69,6 +69,26 @@ class PlaylistCombiner
     }
 
     puts "Found #{diff_by_id.length} playlists in file 1 but not in file 2"
+
+    CSV.open(output_path, "wb") do |csv|
+      csv << [
+        "id",
+        "track_count",
+        "name",
+        "description",
+      ]
+
+      diff_by_id.each do |id, playlist|
+        csv << [
+          playlist["id"],
+          playlist["track_count"],
+          playlist["name"],
+          playlist["description"],
+        ]
+      end
+
+      logger.info "Saved #{diff_by_id.length} playlists"
+    end
   end
 
   private
