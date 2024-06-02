@@ -50,6 +50,27 @@ class PlaylistCombiner
     end
   end
 
+  # TODO: Commonise with combine method
+  def diff(playlist_path_1, playlist_path_2, output_path)
+    playlists_1 = CSV.read(playlist_path_1, headers: true)
+    puts "Found #{playlists_1.length} lines in playlist 1"
+
+    playlists_2 = CSV.read(playlist_path_2, headers: true)
+    puts "Found #{playlists_2.length} lines in playlist 2"
+
+    playlists_by_id_1 = playlists_1.map { |playlist|
+      [playlist["id"], playlist]
+    }.to_h
+
+    playlist_ids_2 = Set.new(playlists_2.map { |playlist| playlist["id"] })
+
+    diff_by_id = playlists_by_id_1.select { |id, playlist|
+      !playlist_ids_2.include?(id)
+    }
+
+    puts "Found #{diff_by_id.length} playlists in file 1 but not in file 2"
+  end
+
   private
 
     attr_reader :logger

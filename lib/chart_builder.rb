@@ -38,6 +38,18 @@ class ChartBuilder < Thor
     IO.popen("pbcopy", "w") { |pipe| pipe.puts output_path }
   end
 
+  desc "diff_source_playlists PLAYLIST_1 PLAYLIST_2",
+    "Find the difference between existing lists of playlist search results"
+  def diff_source_playlists(playlist_1, playlist_2)
+    output_path = "results/source_playlists/playlists_#{DateTime.now}.csv"
+
+    playlist_combiner = PlaylistCombiner.new
+    playlist_combiner.diff(playlist_1, playlist_2, output_path)
+
+    puts "Playlists diffed and saved to #{output_path}"
+    IO.popen("pbcopy", "w") { |pipe| pipe.puts output_path }
+  end
+
   desc "fetch_source_tracks PLAYLIST_DATA_FILE", "Find tracks from all West Coast Swing playlists"
   def fetch_source_tracks(source_playlists_path)
     output_path = "results/raw_playlist_data/tracks_#{DateTime.now}.csv"
