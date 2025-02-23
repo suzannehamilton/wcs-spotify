@@ -2,5 +2,6 @@ config.yaml
 results
 log
 spec/test_output/
+*.swp
 
 .DS_Store
