@@ -17,6 +17,7 @@ class SourceTrackFetcher
       [playlists[0]["id"], 0]
     end
     in_progress_playlist_index = playlists.find_index { |p| p["id"] == in_progress_playlist }
+    playlists = playlists.drop(in_progress_playlist_index)
 
     logger.info "Starting from playlist #{in_progress_playlist} at index #{in_progress_playlist_index} with offset #{in_progress_offset}"
 
