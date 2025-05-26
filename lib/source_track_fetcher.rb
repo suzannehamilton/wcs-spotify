@@ -51,25 +51,7 @@ class SourceTrackFetcher
 
             track_set.each do |track|
               if (!track.id.nil? && track.type == "track")
-                added_at = tracks_added_at[track.id]
-
-                artist_ids = track.artists.map { |artist| artist.id }.join(",")
-                artist_names = track.artists.map { |artist| artist.name }.join(",")
-
-                release_date = track.album.release_date
-                release_date_precision = track.album.release_date_precision
-                markets = (track.album.available_markets || []).join(",")
-
-                csv << [
-                  track.id,
-                  added_at,
-                  track.name,
-                  artist_ids,
-                  artist_names,
-                  release_date,
-                  release_date_precision,
-                  markets,
-                ]
+                csv << extract_track(track, tracks_added_at)
               end
             end
           end
@@ -125,5 +107,27 @@ private
         next
       end
     end
+  end
+
+  def extract_track(track, tracks_added_at)
+    added_at = tracks_added_at[track.id]
+
+    artist_ids = track.artists.map { |artist| artist.id }.join(",")
+    artist_names = track.artists.map { |artist| artist.name }.join(",")
+
+    release_date = track.album.release_date
+    release_date_precision = track.album.release_date_precision
+    markets = (track.album.available_markets || []).join(",")
+
+    [
+      track.id,
+      added_at,
+      track.name,
+      artist_ids,
+      artist_names,
+      release_date,
+      release_date_precision,
+      markets,
+    ]
   end
 end
