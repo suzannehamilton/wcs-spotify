@@ -51,8 +51,9 @@ class ChartBuilder < Thor
   end
 
   desc "fetch_source_tracks PLAYLIST_DATA_FILE", "Find tracks from all West Coast Swing playlists"
+  option :in_progress
   def fetch_source_tracks(source_playlists_path)
-    output_path = "results/raw_playlist_data/tracks_#{DateTime.now}.csv"
+    output_path = options[:in_progress] || "results/raw_playlist_data/tracks_#{DateTime.now}.csv"
 
     source_track_fetcher = SourceTrackFetcher.new
     source_track_fetcher.fetch_tracks(source_playlists_path, output_path)

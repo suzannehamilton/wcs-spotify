@@ -8,8 +8,16 @@ class SourceTrackFetcher
 
   def fetch_tracks(playlists_path, output_path)
     playlists = CSV.read(playlists_path, headers: true)
-
     logger.info "Found #{playlists.length} playlists"
+
+    progress_file_path = output_path + ".progress"
+    in_progress_playlist, in_progress_offset = if File.exist?(progress_file_path)
+      CSV.read(progress_file_path).last
+    else
+      [playlists[0]["id"], 0]
+    end
+
+    logger.info "Starting from playlist #{in_progress_playlist} with offset #{in_progress_offset}"
 
     # TODO: Reference file relative to this one?
     config = YAML::load_file("config.yaml")
@@ -30,7 +38,6 @@ class SourceTrackFetcher
         "available_markets",
       ]
 
-      progress_file_path = output_path + ".progress"
       CSV.open(progress_file_path, "wb") do |progress_file|
         playlists.each do |playlist_summary|
           playlist_id = playlist_summary["id"]
