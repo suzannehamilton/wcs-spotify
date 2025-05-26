@@ -12,7 +12,8 @@ class SourceTrackFetcher
 
     progress_file_path = output_path + ".progress"
     in_progress_playlist, in_progress_offset = if File.exist?(progress_file_path)
-      CSV.read(progress_file_path).last
+      playlist, offset = CSV.read(progress_file_path).last
+      [playlist, offset.to_i]
     else
       [playlists[0]["id"], 0]
     end
@@ -28,7 +29,7 @@ class SourceTrackFetcher
 
     ignored_playlists = Set.new(config["ignored_playlists"])
 
-    CSV.open(output_path, "wb") do |csv|
+    CSV.open(output_path, "ab") do |csv|
       csv << [
         "track_id",
         "added_at",
@@ -38,9 +39,9 @@ class SourceTrackFetcher
         "release_date",
         "release_date_precision",
         "available_markets",
-      ]
+      ] unless File.exist?(progress_file_path)
 
-      CSV.open(progress_file_path, "wb") do |progress_file|
+      CSV.open(progress_file_path, "ab") do |progress_file|
         playlists.each do |playlist_summary|
           playlist_id = playlist_summary["id"]
           next if ignored_playlists.include?(playlist_id)
@@ -52,8 +53,9 @@ class SourceTrackFetcher
           total_tracks = playlist.total
           track_sets = (total_tracks / 100.to_f).ceil
 
-          track_sets.times do |track_offset|
-	    progress_file << [playlist_id, track_offset]
+          offset_start = playlist_id == in_progress_playlist ? in_progress_offset : 0
+          (offset_start...track_sets).each do |track_offset|
+            progress_file << [playlist_id, track_offset]
 
             track_set = get_playlist_tracks(playlist, track_offset * 100)
             tracks_added_at = get_playlist_added_dates(playlist)
