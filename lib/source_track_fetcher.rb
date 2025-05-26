@@ -30,42 +30,47 @@ class SourceTrackFetcher
         "available_markets",
       ]
 
-      playlists.each do |playlist_summary|
-        playlist_id = playlist_summary["id"]
-	next if ignored_playlists.include?(playlist_id)
+      progress_file_path = output_path + ".progress"
+      CSV.open(progress_file_path, "wb") do |progress_file|
+        playlists.each do |playlist_summary|
+          playlist_id = playlist_summary["id"]
+          next if ignored_playlists.include?(playlist_id)
 
-        playlist = get_playlist(playlist_id)
-        next if playlist.nil?
-        logger.info "#{playlist_id}: '#{playlist.name}', #{playlist.total} tracks"
+          playlist = get_playlist(playlist_id)
+          next if playlist.nil?
+          logger.info "#{playlist_id}: '#{playlist.name}', #{playlist.total} tracks"
 
-        total_tracks = playlist.total
-        track_sets = (total_tracks / 100.to_f).ceil
+          total_tracks = playlist.total
+          track_sets = (total_tracks / 100.to_f).ceil
 
-        track_sets.times do |track_offset|
-          track_set = get_playlist_tracks(playlist, track_offset * 100)
-          tracks_added_at = get_playlist_added_dates(playlist)
+          track_sets.times do |track_offset|
+	    progress_file << [playlist_id, track_offset]
 
-          track_set.each do |track|
-            if (!track.id.nil? && track.type == "track")
-              added_at = tracks_added_at[track.id]
+            track_set = get_playlist_tracks(playlist, track_offset * 100)
+            tracks_added_at = get_playlist_added_dates(playlist)
 
-              artist_ids = track.artists.map { |artist| artist.id }.join(",")
-              artist_names = track.artists.map { |artist| artist.name }.join(",")
+            track_set.each do |track|
+              if (!track.id.nil? && track.type == "track")
+                added_at = tracks_added_at[track.id]
 
-              release_date = track.album.release_date
-              release_date_precision = track.album.release_date_precision
-              markets = (track.album.available_markets || []).join(",")
+                artist_ids = track.artists.map { |artist| artist.id }.join(",")
+                artist_names = track.artists.map { |artist| artist.name }.join(",")
 
-              csv << [
-                track.id,
-                added_at,
-                track.name,
-                artist_ids,
-                artist_names,
-                release_date,
-                release_date_precision,
-                markets,
-              ]
+                release_date = track.album.release_date
+                release_date_precision = track.album.release_date_precision
+                markets = (track.album.available_markets || []).join(",")
+
+                csv << [
+                  track.id,
+                  added_at,
+                  track.name,
+                  artist_ids,
+                  artist_names,
+                  release_date,
+                  release_date_precision,
+                  markets,
+                ]
+              end
             end
           end
         end
