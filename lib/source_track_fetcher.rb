@@ -16,8 +16,9 @@ class SourceTrackFetcher
     else
       [playlists[0]["id"], 0]
     end
+    in_progress_playlist_index = playlists.find_index { |p| p["id"] == in_progress_playlist }
 
-    logger.info "Starting from playlist #{in_progress_playlist} with offset #{in_progress_offset}"
+    logger.info "Starting from playlist #{in_progress_playlist} at index #{in_progress_playlist_index} with offset #{in_progress_offset}"
 
     # TODO: Reference file relative to this one?
     config = YAML::load_file("config.yaml")
