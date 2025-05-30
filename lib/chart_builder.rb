@@ -116,11 +116,12 @@ class ChartBuilder < Thor
     puts "Output saved to #{output_path}"
   end
 
+  option :size, :type => :numeric
   desc "create_playlist CHART_DATA_FILE TITLE DESCRIPTION",
     "Create a Spotify playlist for a chart"
   def create_playlist(chart_data_file, title, description)
-    # TODO: Make chart size a parameter
-    playlist(chart_data_file, title, description, 40)
+    size = options[:size] || 40
+    playlist(chart_data_file, title, description, size)
   end
 
   option :recent, :type => :boolean
