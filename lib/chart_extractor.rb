@@ -5,6 +5,7 @@ class ChartExtractor
     start_date,
     end_date,
     earliest_release_date,
+    latest_release_date,
     output_path
   )
     playlist_data = CSV.read(playlist_data_file, headers: true)
@@ -40,7 +41,8 @@ class ChartExtractor
       track = canonical_tracks[track_id]
       # TODO: Handle month and year precisions
       track["release_date_precision"] == "day" &&
-        Date.parse(track["release_date"]) >= earliest_release_date
+        Date.parse(track["release_date"]) >= earliest_release_date &&
+        Date.parse(track["release_date"]) <= latest_release_date
     }
 
     CSV.open(output_path, "wb") do |csv|
