@@ -13,7 +13,7 @@ class CanonicalTrackFinder
     unique_tracks.each do |track|
       key = {
         # TODO: De-duplicate tracks with similar titles
-        name: track["full_name"],
+        name: track["full_name"].downcase,
         artists: track["artist_ids"].split(",").sort
       }
 
